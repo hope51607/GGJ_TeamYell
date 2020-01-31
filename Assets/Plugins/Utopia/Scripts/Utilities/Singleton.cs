@@ -4,11 +4,6 @@ public class Singleton<T> where T : class, new()
 {
     private static object m_Lock = new object();
     private static T m_Instance;
-
-	private Singleton()
-	{
-
-	}
  
     /// <summary>
     /// Access singleton instance through this propriety.
