@@ -456,7 +456,7 @@ Light:
   serializedVersion: 10
   m_Type: 1
   m_Shape: 0
-  m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
+  m_Color: {r: 1, g: 0.8949609, b: 0.6084906, a: 1}
   m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 30
@@ -1252,6 +1252,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Famicon
       objectReference: {fileID: 0}
+    - target: {fileID: 7776713718598483499, guid: 7b97ac1152de52544a988acd33c070f4,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: d6860fc60d4921f45a933925e4649bc5, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7b97ac1152de52544a988acd33c070f4, type: 3}
 --- !u!1001 &7251072597863946808
