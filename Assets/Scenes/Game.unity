@@ -598,6 +598,18 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 792315432244530775}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &450172224 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6380854724238995893, guid: 2c252e382aefd4e4e977d6b3b801ae0c,
+    type: 3}
+  m_PrefabInstance: {fileID: 983947205}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &478810665
 GameObject:
   m_ObjectHideFlags: 0
@@ -929,13 +941,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _dustPool: {fileID: 1408964529}
   _cassetteTopCollider: {fileID: 18141353}
-  _progressBarImage: {fileID: 0}
-  _clearCountText: {fileID: 0}
+  _progressBarImage: {fileID: 2139716704}
+  _clearCountText: {fileID: 450172224}
   _micInputMultiplier: 0.5
   MicInputThreshold: 0.3
   CassetteTransform: {fileID: 857553949}
   BlowForce: 0.05
   _remainingDustAmount: 0
+  _activeDustList: []
 --- !u!1 &739587673
 GameObject:
   m_ObjectHideFlags: 0
@@ -1456,6 +1469,18 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 883036276}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &912516475 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6380854725904458067, guid: 2c252e382aefd4e4e977d6b3b801ae0c,
+    type: 3}
+  m_PrefabInstance: {fileID: 983947205}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &951628133
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2517,6 +2542,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1307891618}
   m_CullTransparentMesh: 0
+--- !u!114 &1364813549 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6380854724295053940, guid: 2c252e382aefd4e4e977d6b3b801ae0c,
+    type: 3}
+  m_PrefabInstance: {fileID: 983947205}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1375040403 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 792315433050684868, guid: c8cbdf94c1903e34c8916e822929abb5,
@@ -2540,7 +2577,7 @@ GameObject:
   - component: {fileID: 1391631900}
   - component: {fileID: 1391631901}
   m_Layer: 0
-  m_Name: CameraManager
+  m_Name: GameplayController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2572,6 +2609,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81796ae8891b42a419944a17bfbc47aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  TimeText: {fileID: 2092081349}
   BlowManagers:
   - {fileID: 1375040403}
   - {fileID: 737533519}
@@ -3178,6 +3216,30 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2092081349 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6380854725345043980, guid: 2c252e382aefd4e4e977d6b3b801ae0c,
+    type: 3}
+  m_PrefabInstance: {fileID: 983947205}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2139716704 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6380854726107091989, guid: 2c252e382aefd4e4e977d6b3b801ae0c,
+    type: 3}
+  m_PrefabInstance: {fileID: 983947205}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2143276085
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3275,6 +3337,16 @@ PrefabInstance:
       propertyPath: CassetteTransform
       value: 
       objectReference: {fileID: 705655960}
+    - target: {fileID: 792315433050684868, guid: c8cbdf94c1903e34c8916e822929abb5,
+        type: 3}
+      propertyPath: _progressBarImage
+      value: 
+      objectReference: {fileID: 912516475}
+    - target: {fileID: 792315433050684868, guid: c8cbdf94c1903e34c8916e822929abb5,
+        type: 3}
+      propertyPath: _clearCountText
+      value: 
+      objectReference: {fileID: 1364813549}
     - target: {fileID: 792315433050684869, guid: c8cbdf94c1903e34c8916e822929abb5,
         type: 3}
       propertyPath: volumeTrigger
