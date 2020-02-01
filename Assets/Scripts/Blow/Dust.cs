@@ -5,7 +5,7 @@ using UnityEngine;
 public class Dust : MonoBehaviour
 {
     public BlowManager AttachedBlowManager;
-    const float MinInactiveYPosThreshold = -1f, MaxInactiveYPosThreshold = 2f;
+    const float MinInactiveYPosThreshold = 4f, MaxInactiveYPosThreshold = 7f;
     Rigidbody _rigid;
 
     private void Awake()
@@ -38,6 +38,10 @@ public class Dust : MonoBehaviour
         if (AttachedBlowManager != null)
         {
             AttachedBlowManager.ApplyBlowForce -= ApplyBlowForce;
+            if (AttachedBlowManager.ApplyBlowForce == null)
+            {
+                Debug.Log("empty");
+            }
         }
     }
 
