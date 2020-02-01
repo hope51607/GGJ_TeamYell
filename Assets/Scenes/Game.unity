@@ -243,6 +243,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 9463468}
   m_PrefabAsset: {fileID: 0}
+--- !u!65 &77926793 stripped
+BoxCollider:
+  m_CorrespondingSourceObject: {fileID: 5875042818824066102, guid: 565e06dec4b5c4c4da284105be2fe209,
+    type: 3}
+  m_PrefabInstance: {fileID: 1621428115}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &183264524 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4404751033862817581, guid: 30bf095bbac69eb4787648390171d05d,
@@ -983,6 +989,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &722320889 stripped
+BoxCollider:
+  m_CorrespondingSourceObject: {fileID: 5875042818824066102, guid: 565e06dec4b5c4c4da284105be2fe209,
+    type: 3}
+  m_PrefabInstance: {fileID: 402830015}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &737533515
 GameObject:
   m_ObjectHideFlags: 0
@@ -1132,9 +1144,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _dustPool: {fileID: 1408964529}
+  _cassetteTopCollider: {fileID: 722320889}
   MinDustSpawnPosition: {x: -1.3, y: 0, z: -0.01}
   MaxDustSpawnPosition: {x: 1.3, y: 0, z: 0.01}
   _micInputMultiplier: 0.5
+  MicInputThreshold: 0.3
   CassetteTransform: {fileID: 1982611257}
   BlowForce: 0.05
 --- !u!1 &739587673
@@ -2633,9 +2647,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _dustPool: {fileID: 1905387558}
+  _cassetteTopCollider: {fileID: 77926793}
   MinDustSpawnPosition: {x: -1.3, y: 0, z: -0.01}
   MaxDustSpawnPosition: {x: 1.3, y: 0, z: 0.01}
   _micInputMultiplier: 0.5
+  MicInputThreshold: 0.3
   CassetteTransform: {fileID: 351232123}
   BlowForce: 0.05
 --- !u!1 &1391631899

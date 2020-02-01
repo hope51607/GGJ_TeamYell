@@ -8,24 +8,29 @@ public class BlowManager : MonoBehaviour
     MMSimpleObjectPooler _dustPool;
 
     [SerializeField]
+    BoxCollider _cassetteTopCollider;
+
+    [SerializeField]
     Vector3 MinDustSpawnPosition, MaxDustSpawnPosition;
 
     [SerializeField]
     float _micInputMultiplier = 5f;
+
+    // 對硬體適應 要拿出來UI改
+    [SerializeField]
+    float MicInputThreshold = 0.3f;
 
     public Vector3 BlowDirection { get; private set; }
 
     public delegate void ApplyBlowForceDelegate();
     public ApplyBlowForceDelegate ApplyBlowForce;
     public Transform CassetteTransform;
+    public float BlowForce = 0.05f;
 
     public const float CassetteHalfLength = 1.5f;
     const float UpForceMultiplier = 2.5f;
     const float AmountOfDust = 10;
     const float MinDustScale = 0.02f, MaxDustScale = 0.2f;
-    const float MicInputThreshold = 0.3f;
-
-    public float BlowForce = 0.05f;
 
     private void Start()
     {
@@ -34,11 +39,6 @@ public class BlowManager : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            Blow();
-        }
-
         if (Input.GetKeyDown(KeyCode.Q))
         {
             FillDust();
@@ -50,8 +50,13 @@ public class BlowManager : MonoBehaviour
         Debug.Log(micInput);
         if (micInput > MicInputThreshold)
         {
+            _cassetteTopCollider.enabled = false;
             BlowForce = micInput * _micInputMultiplier;
             Blow();
+        }
+        else
+        {
+            _cassetteTopCollider.enabled = true;
         }
     }
 
