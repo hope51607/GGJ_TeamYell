@@ -11,6 +11,8 @@ public class GameplayController : MonoSingleton<GameplayController>
     public BlowManager[] BlowManagers;
 
     const int MaxTime = 60;
+
+    [SerializeField]
     float _timeCounter;
 
     private void Awake()
@@ -32,5 +34,9 @@ public class GameplayController : MonoSingleton<GameplayController>
     void TimeOut()
     {
         GameManager.Instance.ChangeState(GameState.Result);
+        foreach (var manager in BlowManagers)
+        {
+            manager.TimeOut();
+        }
     }
 }
