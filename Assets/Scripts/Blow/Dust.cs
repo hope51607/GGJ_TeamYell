@@ -12,6 +12,11 @@ public class Dust : MonoBehaviour
         BlowManager.Instance.ApplyBlowForce += ApplyBlowForce;
     }
 
+    private void FixedUpdate()
+    {
+        _rigid.velocity -= Vector3.up * 0.98f;
+    }
+
     private void OnDisable()
     {
         if (BlowManager.Instance != null)
@@ -22,13 +27,13 @@ public class Dust : MonoBehaviour
 
     void ApplyBlowForce()
     {
-        Vector3 _positionOffset = BlowManager.Instance.TapeTransform.position - transform.position;
-        _positionOffset.y = 0;
-        float _distanceToCenter = _positionOffset.magnitude;        // 除以卡帶半長正規化
-
+        float _distanceRatio = Mathf.Abs(BlowManager.Instance.CassetteTransform.position.x - transform.position.x) / BlowManager.CassetteHalfLength;        // 除以卡帶半長正規化
+        _distanceRatio = Mathf.Clamp01(_distanceRatio);
         Vector3 _force = BlowManager.Instance.BlowDirection
-                         * BlowManager.Instance.BlowForce
-                         * (1 - Mathf.Pow(_distanceToCenter, 2));
-        // 對卡帶的local Y軸反轉 (投影到卡帶的Y軸之後 扣掉兩倍)
+                         * BlowManager.Instance.BlowForce;
+        _force *= (1 - Mathf.Pow(_distanceRatio, 2));
+
+
+        _rigid.AddForce(_force, ForceMode.Impulse);
     }
 }
