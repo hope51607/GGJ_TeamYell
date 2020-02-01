@@ -25,7 +25,7 @@ public class ObjectMotions : MonoBehaviour
 
     public void OnMessage(int playerNumber, JToken data)
     {
-        Debug.Log(playerNumber);
+        //Debug.Log(playerNumber);
         switch (data["action"].ToString())
         {
             case "motion":
