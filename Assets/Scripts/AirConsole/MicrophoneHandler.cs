@@ -12,7 +12,8 @@ public class MicrophoneHandler : MonoBehaviour
     {
         if (data["value"] != null) { 
             print(data["value"]);
-            BlowManager.Instance.SetBlowForce((float)data["value"]);
+            CameraManager.Instance.BlowManagers[0].SetBlowForce((float)data["value"]);
+            CameraManager.Instance.BlowManagers[1].SetBlowForce((float)data["value"]);
         }
     }
 }

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BlowManager : MonoSingleton<BlowManager>
+public class BlowManager : MonoBehaviour
 {
     [SerializeField]
     MMSimpleObjectPooler _dustPool;
@@ -26,7 +26,7 @@ public class BlowManager : MonoSingleton<BlowManager>
     const float UpForceMultiplier = 2.5f;
     const float AmountOfDust = 50;
     const float MinDustScale = 0.035f, MaxDustScale = 0.07f;
-    const float MicInputThreshold = 0.1f;
+    const float MicInputThreshold = 0.3f;
 
     public float BlowForce;
 
@@ -73,6 +73,9 @@ public class BlowManager : MonoSingleton<BlowManager>
         for (int i = 0; i < AmountOfDust; i++)
         {
             var dustObj = _dustPool.GetPooledGameObject();
+
+            Dust _dustScript = dustObj.GetComponent<Dust>();
+            _dustScript.AttachedBlowManager = this;
 
             _pos.x = Random.Range(MinDustSpawnPosition.x, MaxDustSpawnPosition.x);
             _pos.y = DustPositionY;

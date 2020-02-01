@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Dust : MonoBehaviour
 {
+    public BlowManager AttachedBlowManager;
     const float MinInactiveYPosThreshold = -1f, MaxInactiveYPosThreshold = 2f;
     Rigidbody _rigid;
 
@@ -23,9 +24,9 @@ public class Dust : MonoBehaviour
 
     private void OnEnable()
     {
-        if (BlowManager.Instance != null)
+        if (AttachedBlowManager != null)
         {
-            BlowManager.Instance.ApplyBlowForce += ApplyBlowForce;
+            AttachedBlowManager.ApplyBlowForce += ApplyBlowForce;
         }
 
         _rigid.velocity = Vector3.zero;
@@ -34,18 +35,18 @@ public class Dust : MonoBehaviour
 
     private void OnDisable()
     {
-        if (BlowManager.Instance != null)
+        if (AttachedBlowManager != null)
         {
-            BlowManager.Instance.ApplyBlowForce -= ApplyBlowForce;
+            AttachedBlowManager.ApplyBlowForce -= ApplyBlowForce;
         }
     }
 
     void ApplyBlowForce()
     {
-        float _distanceRatio = Mathf.Abs(BlowManager.Instance.CassetteTransform.position.x - transform.position.x) / BlowManager.CassetteHalfLength;        // 除以卡帶半長正規化
+        float _distanceRatio = Mathf.Abs(AttachedBlowManager.CassetteTransform.position.x - transform.position.x) / BlowManager.CassetteHalfLength;        // 除以卡帶半長正規化
         _distanceRatio = Mathf.Clamp01(_distanceRatio);
-        Vector3 _force = BlowManager.Instance.BlowDirection
-                         * BlowManager.Instance.BlowForce;
+        Vector3 _force = AttachedBlowManager.BlowDirection
+                         * AttachedBlowManager.BlowForce;
         if (_distanceRatio > 1)
             _force /= _distanceRatio;
 
