@@ -10,8 +10,6 @@ public class BlowManager : MonoBehaviour
     [SerializeField]
     BoxCollider _cassetteTopCollider;
 
-    [SerializeField]
-    Vector3 MinDustSpawnPosition, MaxDustSpawnPosition;
 
     [SerializeField]
     float _micInputMultiplier = 5f;
@@ -29,25 +27,21 @@ public class BlowManager : MonoBehaviour
 
     public const float CassetteHalfLength = 1.5f;
     const float UpForceMultiplier = 2.5f;
-    const float AmountOfDust = 10;
     const float MinDustScale = 0.02f, MaxDustScale = 0.2f;
+    const float MinDustSpawnPosition = -1.5f, MaxDustSpawnPosition = 1.5f;
+    const int AmountOfDust = 10;
+
+    [SerializeField]
+    int _remainingDustAmount;
 
     private void Start()
     {
-        FillDust();
-    }
-
-    void FixedUpdate()
-    {
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            FillDust();
-        }
+        StartCoroutine(FillDust());
     }
 
     public void SetBlowForce(float micInput)
     {
-        Debug.Log(micInput);
+        //Debug.Log(micInput);
         if (micInput > MicInputThreshold)
         {
             _cassetteTopCollider.enabled = false;
@@ -60,16 +54,34 @@ public class BlowManager : MonoBehaviour
         }
     }
 
+    public void InactiveDust()
+    {
+        _remainingDustAmount--;
+        if (_remainingDustAmount == 0)
+        {
+            StartCoroutine(FillDust());
+        }
+    }
+
+    public float GetRemainingDustRatio()
+    {
+        return ((float)_remainingDustAmount / AmountOfDust);
+    }
+
     void Blow()
     {
         BlowDirection = Vector3.ProjectOnPlane(CassetteTransform.position - transform.position, CassetteTransform.up).normalized;
-        BlowDirection -= UpForceMultiplier * Vector3.Project(CassetteTransform.position - transform.position, CassetteTransform.up).normalized;
+        BlowDirection += UpForceMultiplier * Vector3.Project(CassetteTransform.position - transform.position, CassetteTransform.up).normalized;
+        BlowDirection *= -1;
+
         ApplyBlowForce?.Invoke();
     }
 
-    void FillDust()
+    IEnumerator FillDust()
     {
-        Vector3 _pos;
+        yield return null;
+        
+        Vector3 _pos = Vector3.zero;
         float _scale;
         for (int i = 0; i < AmountOfDust; i++)
         {
@@ -78,9 +90,7 @@ public class BlowManager : MonoBehaviour
             Dust _dustScript = dustObj.GetComponent<Dust>();
             _dustScript.AttachedBlowManager = this;
 
-            _pos.x = Random.Range(MinDustSpawnPosition.x, MaxDustSpawnPosition.x);
-            _pos.y = 0;
-            _pos.z = Random.Range(MinDustSpawnPosition.z, MaxDustSpawnPosition.z);
+            _pos.z = Random.Range(MinDustSpawnPosition, MaxDustSpawnPosition);
 
             dustObj.transform.localPosition = _pos;
 
@@ -89,5 +99,6 @@ public class BlowManager : MonoBehaviour
 
             dustObj.SetActive(true);
         }
+        _remainingDustAmount = AmountOfDust;
     }
 }

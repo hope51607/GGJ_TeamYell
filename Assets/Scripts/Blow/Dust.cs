@@ -38,10 +38,7 @@ public class Dust : MonoBehaviour
         if (AttachedBlowManager != null)
         {
             AttachedBlowManager.ApplyBlowForce -= ApplyBlowForce;
-            if (AttachedBlowManager.ApplyBlowForce == null)
-            {
-                Debug.Log("empty");
-            }
+            AttachedBlowManager.InactiveDust();
         }
     }
 
@@ -53,7 +50,6 @@ public class Dust : MonoBehaviour
                          * AttachedBlowManager.BlowForce;
         if (_distanceRatio > 1)
             _force /= _distanceRatio;
-
 
         _rigid.AddForce(_force, ForceMode.Impulse);
     }
