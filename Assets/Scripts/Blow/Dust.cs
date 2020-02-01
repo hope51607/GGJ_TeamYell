@@ -5,7 +5,7 @@ using UnityEngine;
 public class Dust : MonoBehaviour
 {
     public BlowManager AttachedBlowManager;
-    const float MinInactiveYPosThreshold = 4f, MaxInactiveYPosThreshold = 7f;
+    const float MinInactiveYPosThreshold = -1f, MaxInactiveYPosThreshold = 2f;
     Rigidbody _rigid;
 
     private void Awake()
@@ -15,8 +15,8 @@ public class Dust : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (transform.position.y < MinInactiveYPosThreshold
-            || transform.position.y > MaxInactiveYPosThreshold)
+        if (transform.localPosition.y < MinInactiveYPosThreshold
+            || transform.localPosition.y > MaxInactiveYPosThreshold)
         {
             gameObject.SetActive(false);
         }

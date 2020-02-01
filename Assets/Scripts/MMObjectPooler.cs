@@ -44,8 +44,10 @@ public class MMObjectPooler : MonoBehaviour
         {
             // we create a container that will hold all the instances we create
             _waitingPool = new GameObject(DetermineObjectPoolName());
-            if (Parent != null)
+            if (Parent != null) { 
                 _waitingPool.transform.SetParent(Parent);
+                _waitingPool.transform.localPosition = Vector3.zero;
+            }
         }
         else
         {

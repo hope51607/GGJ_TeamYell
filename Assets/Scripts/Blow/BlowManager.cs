@@ -76,8 +76,8 @@ public class BlowManager : MonoBehaviour
             _pos.x = Random.Range(MinDustSpawnPosition.x, MaxDustSpawnPosition.x);
             _pos.y = 0;
             _pos.z = Random.Range(MinDustSpawnPosition.z, MaxDustSpawnPosition.z);
-            _pos += CassetteTransform.position;
-            dustObj.transform.position = _pos;
+
+            dustObj.transform.localPosition = _pos;
 
             _scale = Random.Range(MinDustScale, MaxDustScale);
             dustObj.transform.localScale = new Vector3(_scale, _scale, _scale);
