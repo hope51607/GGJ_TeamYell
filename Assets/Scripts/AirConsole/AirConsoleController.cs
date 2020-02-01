@@ -20,13 +20,14 @@ public class AirConsoleController : MonoBehaviour {
     void OnMessage(int from, JToken data)
     {
         Debug.Log("message from device " + from + ", data: " + data);
+        int playerNumber = AirConsole.instance.ConvertDeviceIdToPlayerNumber(from);
         switch (data["action"].ToString())
         {
             case "motion":
-                objectMotions.OnMessage(from, data);
+                objectMotions.OnMessage(playerNumber, data);
                 break;
             case "government":
-                microphoneHandler.OnMessage(from, data);
+                microphoneHandler.OnMessage(playerNumber, data);
                 break;
             default:
                 Debug.Log(data);
@@ -36,8 +37,8 @@ public class AirConsoleController : MonoBehaviour {
 
     void OnDestroy()
     {
-        if (AirConsole.instance != null)
-        {
+        if (AirConsole.instance != null) {
+            AirConsole.instance.SetActivePlayers(4);
             AirConsole.instance.onMessage -= OnMessage;
         }
     }
