@@ -10,7 +10,9 @@ public class MicrophoneHandler : MonoBehaviour
 
     public void OnMessage(int from, JToken data)
     {
-        if (data["value"] != null)
+        if (data["value"] != null) { 
             print(data["value"]);
+            BlowManager.Instance.SetBlowForce((float)data["value"]);
+        }
     }
 }
