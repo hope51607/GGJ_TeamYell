@@ -11,9 +11,6 @@ public class BlowManager : MonoBehaviour
     Vector3 MinDustSpawnPosition, MaxDustSpawnPosition;
 
     [SerializeField]
-    float DustPositionY = 0;
-
-    [SerializeField]
     float _micInputMultiplier = 0.5f;
 
     public Vector3 BlowDirection { get; private set; }
@@ -78,7 +75,7 @@ public class BlowManager : MonoBehaviour
             _dustScript.AttachedBlowManager = this;
 
             _pos.x = Random.Range(MinDustSpawnPosition.x, MaxDustSpawnPosition.x);
-            _pos.y = DustPositionY;
+            _pos.y = 0;
             _pos.z = Random.Range(MinDustSpawnPosition.z, MaxDustSpawnPosition.z);
             _pos += CassetteTransform.position;
             dustObj.transform.position = _pos;
