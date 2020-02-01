@@ -41,6 +41,7 @@ public class BlowManager : MonoBehaviour
     int _remainingDustAmount;
 
     int _clearCount;
+    bool _timeOut;
 
     private void Start()
     {
@@ -64,6 +65,9 @@ public class BlowManager : MonoBehaviour
 
     public void InactiveDust()
     {
+        if (_timeOut)
+            return;
+
         _remainingDustAmount--;
 
         if (_remainingDustAmount == 0)
@@ -74,6 +78,12 @@ public class BlowManager : MonoBehaviour
         }
 
         _progressBarImage.fillAmount = GetRemainingDustRatio();
+    }
+
+    public void TimeOut()
+    {
+        _timeOut = true;
+        StopAllCoroutines();
     }
 
     float GetRemainingDustRatio()

@@ -15,9 +15,15 @@ public enum GameState
 
 public class GameManager : MonoSingleton<GameManager>
 {
+    [SerializeField]
     private GameState m_current = GameState.None;
 
     private bool m_isEntering;
+
+    private void Awake()
+    {
+        DontDestroyOnLoad(gameObject);
+    }
 
     private void Start()
     {
@@ -46,7 +52,7 @@ public class GameManager : MonoSingleton<GameManager>
                 {
                     if (m_isEntering)
                     {
-                        SceneManager.LoadScene("Game", LoadSceneMode.Additive);
+                        SceneManager.LoadScene("Game");
                         ChangeState(GameState.Game);
                     }
                     break;
@@ -66,6 +72,7 @@ public class GameManager : MonoSingleton<GameManager>
                     {
                         // Play Result.
                         // In Game Cycle => Wait click Replay
+                        SceneManager.LoadScene("Result");
                     }
                     break;
                 }
@@ -74,6 +81,7 @@ public class GameManager : MonoSingleton<GameManager>
                     if (m_isEntering)
                     {
                         // Go Load game scene.
+                        SceneManager.LoadScene("Game");
                     }
                     break;
                 }
