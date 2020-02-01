@@ -1,11 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public enum GameState
 {
     None = 0,
     StartAnim,
+    LoadGame,
     Game,
     Result,
     Replay,
@@ -36,13 +38,22 @@ public class GameManager : MonoSingleton<GameManager>
                     if (m_isEntering)
                     {
                         // Play Animation
-                        // Animation CB : Game
+                        // Animation CB : LoadGame
+                    }
+                    break;
+                }
+            case GameState.LoadGame:
+                {
+                    if (m_isEntering)
+                    {
+                        SceneManager.LoadScene("Game", LoadSceneMode.Additive);
+                        ChangeState(GameState.Game);
                     }
                     break;
                 }
             case GameState.Game:
                 {
-                    if(m_isEntering)
+                    if (m_isEntering)
                     {
                         // Play ReadyGo => GameStart
                         // In Game Cycle => Result
@@ -51,7 +62,7 @@ public class GameManager : MonoSingleton<GameManager>
                 }
             case GameState.Result:
                 {
-                    if(m_isEntering)
+                    if (m_isEntering)
                     {
                         // Play Result.
                         // In Game Cycle => Wait click Replay
@@ -60,7 +71,7 @@ public class GameManager : MonoSingleton<GameManager>
                 }
             case GameState.Replay:
                 {
-                    if(m_isEntering)
+                    if (m_isEntering)
                     {
                         // Go Load game scene.
                     }
