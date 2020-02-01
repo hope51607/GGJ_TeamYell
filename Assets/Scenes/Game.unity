@@ -3224,7 +3224,6 @@ MonoBehaviour:
   movableObject:
   - {fileID: 351232122}
   - {fileID: 1982611256}
-  - {fileID: 0}
   xyzMaxRotateRange: {x: 45, y: 0, z: 30}
   xyzMinRotateRange: {x: -45, y: 0, z: -30}
   xDisplacementRange: 3
@@ -3242,6 +3241,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sensitivity: 1000
+  value: 0
 --- !u!114 &1627600680
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -11,9 +11,8 @@ public class MicrophoneHandler : MonoBehaviour
     public void OnMessage(int from, JToken data)
     {
         if (data["value"] != null) { 
-            print(data["value"]);
-            CameraManager.Instance.BlowManagers[0].SetBlowForce((float)data["value"]);
-            CameraManager.Instance.BlowManagers[1].SetBlowForce((float)data["value"]);
+            //print(data["value"]);
+            CameraManager.Instance.BlowManagers[from].SetBlowForce((float)data["value"]);
         }
     }
 }
