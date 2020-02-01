@@ -5,11 +5,14 @@ using NDream.AirConsole;
 using Newtonsoft.Json.Linq;
 
 public class AirConsoleController : MonoBehaviour {
+
+    private ObjectMotions objectMotions;
     private MicrophoneHandler microphoneHandler;
     
     void Awake()
     {
         AirConsole.instance.onMessage += OnMessage;
+        objectMotions = GetComponent<ObjectMotions>();
         microphoneHandler = GetComponent<MicrophoneHandler>();
     }
 
@@ -20,9 +23,10 @@ public class AirConsoleController : MonoBehaviour {
         switch (data["action"].ToString())
         {
             case "motion":
+                objectMotions.OnMessage(from, data);
                 break;
             case "government":
-                microphoneHandler.Message(from, data);
+                microphoneHandler.OnMessage(from, data);
                 break;
             default:
                 Debug.Log(data);
