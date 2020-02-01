@@ -571,11 +571,11 @@ PlayerSettings:
   webGLMemorySize: 16
   webGLExceptionSupport: 1
   webGLNameFilesAsHashes: 0
-  webGLDataCaching: 1
+  webGLDataCaching: 0
   webGLDebugSymbols: 0
   webGLEmscriptenArgs: 
   webGLModulesDirectory: 
-  webGLTemplate: APPLICATION:Default
+  webGLTemplate: PROJECT:AirConsole
   webGLAnalyzeBuildSize: 0
   webGLUseEmbeddedResources: 0
   webGLCompressionFormat: 1
