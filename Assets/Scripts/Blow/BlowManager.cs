@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BlowManager : MonoBehaviour
 {
@@ -10,6 +11,11 @@ public class BlowManager : MonoBehaviour
     [SerializeField]
     BoxCollider _cassetteTopCollider;
 
+    [SerializeField]
+    Image _progressBarImage;
+
+    [SerializeField]
+    Text _clearCountText;
 
     [SerializeField]
     float _micInputMultiplier = 5f;
@@ -34,6 +40,8 @@ public class BlowManager : MonoBehaviour
     [SerializeField]
     int _remainingDustAmount;
 
+    int _clearCount;
+
     private void Start()
     {
         StartCoroutine(FillDust());
@@ -57,13 +65,18 @@ public class BlowManager : MonoBehaviour
     public void InactiveDust()
     {
         _remainingDustAmount--;
+
         if (_remainingDustAmount == 0)
         {
             StartCoroutine(FillDust());
+            _clearCount++;
+            _clearCountText.text = _clearCount.ToString();
         }
+
+        _progressBarImage.fillAmount = GetRemainingDustRatio();
     }
 
-    public float GetRemainingDustRatio()
+    float GetRemainingDustRatio()
     {
         return ((float)_remainingDustAmount / AmountOfDust);
     }
@@ -100,5 +113,6 @@ public class BlowManager : MonoBehaviour
             dustObj.SetActive(true);
         }
         _remainingDustAmount = AmountOfDust;
+        _progressBarImage.fillAmount = 1;
     }
 }
