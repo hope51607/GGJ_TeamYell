@@ -21,7 +21,7 @@ public class AirConsoleController : MonoBehaviour
 
     void OnMessage(int from, JToken data)
     {
-        Debug.Log("message from device " + from + ", data: " + data);
+        //Debug.Log("message from device " + from + ", data: " + data);
         int playerNumber = AirConsole.instance.ConvertDeviceIdToPlayerNumber(from);
         switch (data["action"].ToString())
         {
@@ -30,6 +30,10 @@ public class AirConsoleController : MonoBehaviour
                 break;
             case "government":
                 microphoneHandler.OnMessage(playerNumber, data);
+                break;
+            case "blow":
+                //吹氣
+                Debug.Log("吹");
                 break;
             default:
                 Debug.Log(data);
