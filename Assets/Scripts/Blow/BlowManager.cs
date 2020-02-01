@@ -11,7 +11,7 @@ public class BlowManager : MonoBehaviour
     Vector3 MinDustSpawnPosition, MaxDustSpawnPosition;
 
     [SerializeField]
-    float _micInputMultiplier = 0.5f;
+    float _micInputMultiplier = 5f;
 
     public Vector3 BlowDirection { get; private set; }
 
@@ -21,11 +21,11 @@ public class BlowManager : MonoBehaviour
 
     public const float CassetteHalfLength = 1.5f;
     const float UpForceMultiplier = 2.5f;
-    const float AmountOfDust = 50;
-    const float MinDustScale = 0.035f, MaxDustScale = 0.07f;
+    const float AmountOfDust = 10;
+    const float MinDustScale = 0.02f, MaxDustScale = 0.2f;
     const float MicInputThreshold = 0.3f;
 
-    public float BlowForce;
+    public float BlowForce = 0.05f;
 
     private void Start()
     {
@@ -34,10 +34,10 @@ public class BlowManager : MonoBehaviour
 
     void FixedUpdate()
     {
-        //if (Input.GetKeyDown(KeyCode.Space))
-        //{
-        //    Blow();
-        //}
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            Blow();
+        }
 
         if (Input.GetKeyDown(KeyCode.Q))
         {
@@ -59,7 +59,6 @@ public class BlowManager : MonoBehaviour
     {
         BlowDirection = Vector3.ProjectOnPlane(CassetteTransform.position - transform.position, CassetteTransform.up).normalized;
         BlowDirection -= UpForceMultiplier * Vector3.Project(CassetteTransform.position - transform.position, CassetteTransform.up).normalized;
-        Debug.Log(BlowDirection);
         ApplyBlowForce?.Invoke();
     }
 

@@ -38,6 +38,10 @@ public class Dust : MonoBehaviour
         if (AttachedBlowManager != null)
         {
             AttachedBlowManager.ApplyBlowForce -= ApplyBlowForce;
+            if (AttachedBlowManager.ApplyBlowForce == null)
+            {
+                Debug.Log("empty");
+            }
         }
     }
 
