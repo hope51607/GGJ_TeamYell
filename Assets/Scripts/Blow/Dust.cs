@@ -4,17 +4,30 @@ using UnityEngine;
 
 public class Dust : MonoBehaviour
 {
+    const float InactiveYPosThreshold = -1f;
     Rigidbody _rigid;
 
     private void Awake()
     {
         _rigid = GetComponent<Rigidbody>();
-        BlowManager.Instance.ApplyBlowForce += ApplyBlowForce;
     }
 
     private void FixedUpdate()
     {
-        _rigid.velocity -= Vector3.up * 0.98f;
+        if (transform.position.y < InactiveYPosThreshold)
+        {
+            gameObject.SetActive(false);
+        }
+    }
+
+    private void OnEnable()
+    {
+        if (BlowManager.Instance != null)
+        {
+            BlowManager.Instance.ApplyBlowForce += ApplyBlowForce;
+        }
+
+        _rigid.mass = transform.localScale.x;
     }
 
     private void OnDisable()
@@ -31,7 +44,8 @@ public class Dust : MonoBehaviour
         _distanceRatio = Mathf.Clamp01(_distanceRatio);
         Vector3 _force = BlowManager.Instance.BlowDirection
                          * BlowManager.Instance.BlowForce;
-        _force *= (1 - Mathf.Pow(_distanceRatio, 2));
+        if (_distanceRatio > 1)
+            _force /= _distanceRatio;
 
 
         _rigid.AddForce(_force, ForceMode.Impulse);
