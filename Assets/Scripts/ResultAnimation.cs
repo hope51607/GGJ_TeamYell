@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using UnityEngine.UI;
 
 public class ResultAnimation : MonoBehaviour
 {
-    private int[] points = {30,30};
+    private int[] points = {35,35};
     public GameObject cassette;
     public float xgap=3;
     public float ygap=2;
@@ -14,15 +15,22 @@ public class ResultAnimation : MonoBehaviour
     // Variables used to iterate points
     int lCounter = 0;
     int rCounter = 0;
-    Vector3 lTempPos = new Vector3(-14, -4, 0);
-    Vector3 rTempPos = new Vector3(2, -4, 0);
+    Vector3 lTempPos = new Vector3(-16, -4, 0);
+    Vector3 rTempPos = new Vector3(3.5f, -4, 0);
     List<GameObject> lPoints = new List<GameObject>();
     List<GameObject> rPoints = new List<GameObject>();
 
     int threshold;
     bool calculationDone = false;
+    public Animator anim;
+    public Image winPlayerNum;
+    public Sprite[] playerNum;
+    public Button replayButton;
+    private ResultScene rs;
+
     private void Awake()
     {
+        calculationDone = false;
         cassette.transform.position = new Vector3(0, 20, 0);
         //points = GameManager.Instance.points;
         threshold = Mathf.Min(points[0], points[1])*9/10;
@@ -37,6 +45,7 @@ public class ResultAnimation : MonoBehaviour
         }
         this.StartCoroutine(CalculateLPoints());
         this.StartCoroutine(CalculateRPoints());
+        rs = this.GetComponent<ResultScene>();
     }
 
     IEnumerator CalculateLPoints()
@@ -91,7 +100,7 @@ public class ResultAnimation : MonoBehaviour
         Sequence mySequence = DOTween.Sequence();
         mySequence.Append(thisTransform.DOMove(lTempPos, 0.2f).SetEase(Ease.OutBounce));
 
-        lTempPos = new Vector3(-14 + xgap * ((i+1) / 7), -4 + ygap * ((i+1) % 7), 0);
+        lTempPos = new Vector3(-16 + xgap * ((i+1) / 7), -4 + ygap * ((i+1) % 7), 0);
     }
     void RPointsUpdate(int i)
     {
@@ -101,14 +110,35 @@ public class ResultAnimation : MonoBehaviour
         Sequence mySequence = DOTween.Sequence();
         mySequence.Append(thisTransform.DOMove(rTempPos, 0.2f).SetEase(Ease.OutBounce));
 
-        rTempPos = new Vector3(2 + xgap * ((i + 1) / 7), -4 + ygap * ((i + 1) % 7), 0);
+        rTempPos = new Vector3(3.5f + xgap * ((i + 1) / 7), -4 + ygap * ((i + 1) % 7), 0);
     }
-
+    IEnumerator Wait(float time)
+    {
+        yield return new WaitForSeconds(time);
+    }
     private void Update()
     {
-        if(calculationDone == false && rCounter == points[0] && lCounter == points[1] )
+        if (calculationDone == false && lCounter == points[0] && rCounter == points[1] )
         {
+            Wait(1);
+            if (rCounter ==lCounter)
+            {
+                anim.Play("Draw");
+            }
+            else
+            {
+                if(rCounter > lCounter)
+                {
+                    winPlayerNum.sprite = playerNum[1];
+                }
+                else
+                {
+                    winPlayerNum.sprite = playerNum[0];
+                }
+                anim.Play("PlayerWin");
+            }
             calculationDone = true;
+            replayButton.onClick.AddListener(delegate () { rs.Replay(); });
         }
     }
 
