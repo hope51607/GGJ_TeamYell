@@ -2725,8 +2725,8 @@ MonoBehaviour:
   - {fileID: 1103436000}
   xyzMaxRotateRange: {x: 45, y: 0, z: 30}
   xyzMinRotateRange: {x: -45, y: 0, z: -30}
-  xDisplacementRange: 3
-  scaling: 10
+  xDisplacementRange: 1.5
+  scaling: 100
 --- !u!114 &1627600679
 MonoBehaviour:
   m_ObjectHideFlags: 0
