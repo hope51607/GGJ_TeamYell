@@ -1882,7 +1882,6 @@ GameObject:
   - component: {fileID: 1003159819}
   - component: {fileID: 1003159818}
   - component: {fileID: 1003159817}
-  - component: {fileID: 1003159816}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -1890,25 +1889,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!95 &1003159816
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1003159815}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 780c8ad1237c3a7458704d03dc638e01, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &1003159817
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2793,6 +2773,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: "\u6F14\u51FAcanvas"
+      objectReference: {fileID: 0}
+    - target: {fileID: 2704832346712913225, guid: 8a3f02253c43b2c4dbfe3fc5e3d23de2,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2704832346712913226, guid: 8a3f02253c43b2c4dbfe3fc5e3d23de2,
         type: 3}
