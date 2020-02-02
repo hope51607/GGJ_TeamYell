@@ -81,7 +81,7 @@ public class GameManager : MonoSingleton<GameManager>
                     if (m_isEntering)
                     {
                         // Go Load game scene.
-                        SceneManager.LoadScene("Game");
+                        SceneManager.LoadScene("WaitForConnect");
                     }
                     break;
                 }
