@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class ResultAnimation : MonoBehaviour
 {
-    private int[] points = {35,35};
+    private int[] points = {32,32};
     public GameObject cassette;
     public float xgap=3;
     public float ygap=2;
@@ -32,7 +32,7 @@ public class ResultAnimation : MonoBehaviour
     {
         calculationDone = false;
         cassette.transform.position = new Vector3(0, 20, 0);
-        //points = GameManager.Instance.points;
+        points = GameManager.Instance.points;
         threshold = Mathf.Min(points[0], points[1])*9/10;
 
         for(int i=0;i<points[0];i++)
@@ -57,6 +57,10 @@ public class ResultAnimation : MonoBehaviour
             LPointsUpdate(lCounter);
             if(lCounter < threshold)
             {
+                if (lPoints.Count > rPoints.Count && lCounter % 4 == 1)
+                {
+                    AudioManager.Instance.PlaySE("1");
+                }
                 yield return new WaitForSeconds(timing[0]);
             }
             else if( lCounter == threshold )
@@ -65,6 +69,10 @@ public class ResultAnimation : MonoBehaviour
             }
             else
             {
+                if (lPoints.Count > rPoints.Count)
+                {
+                    AudioManager.Instance.PlaySE("1");
+                }
                 yield return new WaitForSeconds(timing[2]);
             }
             lCounter++;
@@ -79,6 +87,10 @@ public class ResultAnimation : MonoBehaviour
             RPointsUpdate(rCounter);
             if (rCounter < threshold)
             {
+                if (rPoints.Count >= lPoints.Count && rCounter % 4 == 1)
+                {
+                    AudioManager.Instance.PlaySE("1");
+                }
                 yield return new WaitForSeconds(timing[0]);
             }
             else if (rCounter == threshold)
@@ -87,6 +99,10 @@ public class ResultAnimation : MonoBehaviour
             }
             else
             {
+                if (rPoints.Count >= lPoints.Count)
+                {
+                    AudioManager.Instance.PlaySE("1");
+                }
                 yield return new WaitForSeconds(timing[2]);
             }
             rCounter++;

@@ -38,8 +38,12 @@ public class CheckConection : MonoBehaviour {
     }
 
     void OnMessage(int from, JToken data) {
+        int playerNumber = AirConsole.instance.ConvertDeviceIdToPlayerNumber(from);
+
         if (data["government_threshold"] != null) {
             print("government_threshold: " + data["government_threshold"]);
+
+            GameManager.Instance.micThresholds[playerNumber] = (float)data["government_threshold"];
         }
     }
 }

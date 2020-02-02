@@ -15,17 +15,14 @@ public class BlowManager : MonoBehaviour
     [SerializeField]
     Text _clearCountText;
 
-    // 對硬體適應 要拿出來UI改
-    [SerializeField]
-    float MicInputThreshold = 0.1f;
-
     public Vector3 BlowDirection { get; private set; }
     public int ClearCount { get; private set; }
 
     public delegate void ApplyBlowForceDelegate();
     public ApplyBlowForceDelegate ApplyBlowForce;
     public Transform CassetteTransform;
-    public float BlowForce = 0.05f;
+    public float MicInputThreshold = 0.1f;
+    public float BlowForce = 0.3f;
 
     public const float CassetteHalfLength = 1.5f;
     const float UpForceMultiplier = 2.5f;

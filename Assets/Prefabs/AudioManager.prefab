@@ -279,7 +279,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3464686089288393672}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.96414906, y: 4.0833797, z: -4.762453}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 3464686089097160059}
@@ -319,6 +319,9 @@ MonoBehaviour:
     volume: 0.5
   - name: BlowHigh
     clip: {fileID: 8300000, guid: 496b6ccff65b2f6459583a3ed48a2861, type: 3}
+    volume: 0.5
+  - name: 1
+    clip: {fileID: 8300000, guid: 3629c3eb5aa7fe94cb0d39e44addf258, type: 3}
     volume: 0.5
 --- !u!1 &3464686089581269688
 GameObject:

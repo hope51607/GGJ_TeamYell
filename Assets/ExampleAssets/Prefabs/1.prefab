@@ -229,10 +229,9 @@ MonoBehaviour:
   _dustPool: {fileID: 0}
   _progressBarImage: {fileID: 0}
   _clearCountText: {fileID: 0}
-  _micInputMultiplier: 0.5
-  MicInputThreshold: 0.3
   CassetteTransform: {fileID: 3108774994333370483}
-  BlowForce: 0.05
+  MicInputThreshold: 0.1
+  BlowForce: 0.3
   _remainingDustAmount: 0
 --- !u!1 &792315433098373704
 GameObject:
