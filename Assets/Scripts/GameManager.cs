@@ -39,11 +39,15 @@ public class GameManager : MonoSingleton<GameManager>
 
     private void Tick()
     {
+        var entering = m_isEntering;
+        if (m_isEntering)
+            m_isEntering = false;
+
         switch (m_current)
         {
             case GameState.StartAnim:
                 {
-                    if (m_isEntering)
+                    if (entering)
                     {
                         // Play Animation
                         
@@ -54,7 +58,7 @@ public class GameManager : MonoSingleton<GameManager>
                 }
             case GameState.LoadGame:
                 {
-                    if (m_isEntering)
+                    if (entering)
                     {
                         SceneManager.LoadScene("Game");
                         ChangeState(GameState.Game);
@@ -63,16 +67,18 @@ public class GameManager : MonoSingleton<GameManager>
                 }
             case GameState.Game:
                 {
-                    if (m_isEntering)
+                    if (entering)
                     {
                         // Play ReadyGo => GameStart
                         // In Game Cycle => Result
+                        Debug.Log("Entering");
+                        AudioManager.Instance.SwitchMusic("GamePlay");
                     }
                     break;
                 }
             case GameState.Result:
                 {
-                    if (m_isEntering)
+                    if (entering)
                     {
                         // Play Result.
                         // In Game Cycle => Wait click Replay
@@ -82,7 +88,7 @@ public class GameManager : MonoSingleton<GameManager>
                 }
             case GameState.Replay:
                 {
-                    if (m_isEntering)
+                    if (entering)
                     {
                         // Go Load game scene.
                         SceneManager.LoadScene("WaitForConnect");
@@ -91,8 +97,7 @@ public class GameManager : MonoSingleton<GameManager>
                 }
         }
 
-        if (m_isEntering)
-            m_isEntering = false;
+        
     }
 
     public void ChangeState(GameState gameState)

@@ -37,6 +37,7 @@ public class AudioManager : MonoBehaviour
 
     public void SwitchMusic(string name)
     {
+        Debug.Log("Switch : " + name);
         if (InputInterval == false)
         {
             InputInterval = true;
