@@ -36,6 +36,8 @@ public class BlowManager : MonoBehaviour
 
     [SerializeField]
     MeshRenderer _renderer;
+    [SerializeField]
+    MeshRenderer _renderer_bottom;
 
     [SerializeField]
     int _remainingDustAmount;
@@ -125,10 +127,12 @@ public class BlowManager : MonoBehaviour
         if (_target == 0)
         {
             _renderer.materials = GameplayController.Instance.MaterailSet1;
+            _renderer_bottom.material = GameplayController.Instance.MaterailSet1[0];
         }
         else
         {
             _renderer.materials = GameplayController.Instance.MaterailSet2;
+            _renderer_bottom.material = GameplayController.Instance.MaterailSet2[0];
         }
 
         CassetteTransform.position = _pos;

@@ -3,19 +3,16 @@ using System.Collections.Generic;
 using NDream.AirConsole;
 using Newtonsoft.Json.Linq;
 using UnityEngine;
-using UnityEngine.Video;
 public class VideoPlayerController : MonoBehaviour
 {
-   public VideoPlayer videoPlayer;
+
    void Awake()
    {
        AirConsole.instance.onMessage += OnMessage;
-        videoPlayer.url = Application.streamingAssetsPath + "/" + "opening.webm";
    }
    void Start()
    {
-       videoPlayer.Prepare();
-       videoPlayer.prepareCompleted += PlayVideo;
+       PlayVideo();
    }
    
    void EndReached(UnityEngine.Video.VideoPlayer vp) 
@@ -24,13 +21,10 @@ public class VideoPlayerController : MonoBehaviour
     }
     public void Skip()
     {
-        videoPlayer.loopPointReached -= EndReached;
         GameManager.Instance.ChangeState(GameState.WaitForConnect);
     }
-    public void PlayVideo(UnityEngine.Video.VideoPlayer vp)
+    public void PlayVideo()
     {
-        videoPlayer.Play();
-        videoPlayer.loopPointReached += EndReached;
          AudioManager.Instance.SwitchMusic("Plot");
     }
 
