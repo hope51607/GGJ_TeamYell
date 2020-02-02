@@ -6,9 +6,9 @@ public class ResultScene : MonoBehaviour
 {
     void Update()
     {
-        if (Input.anyKey)
+        /*if (Input.anyKey)
         {
             GameManager.Instance.ChangeState(GameState.Replay);
-        }
+        }*/
     }
 }
