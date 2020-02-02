@@ -10,6 +10,8 @@ public class CheckConection : MonoBehaviour {
 
     [SerializeField] Button _startButton;
 
+    int _waitingForPlayerIndex;
+
     void Awake() {
         AirConsole.instance.onMessage += OnMessage;
         AirConsole.instance.onConnect += (int deviceId) => {
@@ -18,10 +20,13 @@ public class CheckConection : MonoBehaviour {
 
             if (playerNumber == 0) {
                 _p1NameField.interactable = true;
-                _startButton.interactable = true;
+                _waitingForPlayerIndex = 0;
             }
             else if (playerNumber == 1) {
+                _startButton.interactable = false;
+
                 _p2NameField.interactable = true;
+                _waitingForPlayerIndex = 1;
             }
             else {
                 Debug.Log("Player number != 0 or 1");
@@ -44,6 +49,9 @@ public class CheckConection : MonoBehaviour {
             print("government_threshold: " + data["government_threshold"]);
 
             GameManager.Instance.micThresholds[playerNumber] = (float)data["government_threshold"];
+
+            if (_waitingForPlayerIndex == playerNumber)
+                _startButton.interactable = true;
         }
     }
 }
