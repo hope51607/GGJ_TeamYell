@@ -31,6 +31,10 @@ public class AirConsoleController : MonoBehaviour
             GameplayController.Instance.BlowManagers[playerNumber].SetBlowForce();
         }
 
+        if (data["government_threshold"] != null) {
+            print("government_threshold: " + data["government_threshold"]);
+        }
+
 
         //switch (data["action"].ToString())
         //{

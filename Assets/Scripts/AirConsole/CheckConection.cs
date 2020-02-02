@@ -5,45 +5,41 @@ using Newtonsoft.Json.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CheckConection : MonoBehaviour
-{
-    [SerializeField]
-    InputField _p1NameField, _p2NameField;
+public class CheckConection : MonoBehaviour {
+    [SerializeField] InputField _p1NameField, _p2NameField;
 
-    [SerializeField]
-    Button _startButton;
+    [SerializeField] Button _startButton;
 
-    void Awake()
-    {
+    void Awake() {
+        AirConsole.instance.onMessage += OnMessage;
         AirConsole.instance.onConnect += (int deviceId) => {
             AirConsole.instance.SetActivePlayers(2);
-            int playerNumber =AirConsole.instance.ConvertDeviceIdToPlayerNumber(deviceId);
+            int playerNumber = AirConsole.instance.ConvertDeviceIdToPlayerNumber(deviceId);
 
-            if (playerNumber == 0)
-            {
+            if (playerNumber == 0) {
                 _p1NameField.interactable = true;
                 _startButton.interactable = true;
             }
-            else if (playerNumber == 1)
-            {
+            else if (playerNumber == 1) {
                 _p2NameField.interactable = true;
             }
-            else
-            {
+            else {
                 Debug.Log("Player number != 0 or 1");
             }
         };
 
-        AirConsole.instance.onDisconnect += (int deviceId)=>
-        {
-            AirConsole.instance.SetActivePlayers(0);
-        };
+        AirConsole.instance.onDisconnect += (int deviceId) => { AirConsole.instance.SetActivePlayers(0); };
     }
 
-    public void LoadGame()
-    {
+    public void LoadGame() {
         AirConsole.instance.Broadcast(JToken.Parse("{\"adjustment\":\"1\"}"));
 
         GameManager.Instance.ChangeState(GameState.LoadGame);
+    }
+
+    void OnMessage(int from, JToken data) {
+        if (data["government_threshold"] != null) {
+            print("government_threshold: " + data["government_threshold"]);
+        }
     }
 }
