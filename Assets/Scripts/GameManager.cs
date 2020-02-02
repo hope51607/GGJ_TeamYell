@@ -25,6 +25,8 @@ public class GameManager : MonoSingleton<GameManager>
 
     public int[] points;
 
+    public string[] PlayerNames = new string[2];
+
     private void Awake()
     {
         DontDestroyOnLoad(gameObject);
