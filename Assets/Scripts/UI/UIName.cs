@@ -15,6 +15,7 @@ public class UIName : MonoBehaviour
     void Start()
     {
         m_text = GetComponent<Text>();
+        GetName();
     }
 
     void GetName()
