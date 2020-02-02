@@ -7,6 +7,7 @@ public enum GameState
 {
     None = 0,
     StartAnim,
+    WaitForConnect,
     LoadGame,
     Game,
     Result,
@@ -20,11 +21,13 @@ public class GameManager : MonoSingleton<GameManager>
 
     private bool m_isEntering;
 
-    public int[] points={0,1};
+    public int[] points;
 
     private void Awake()
     {
         DontDestroyOnLoad(gameObject);
+
+        points = new int[2];
     }
 
     private void Start()
@@ -49,6 +52,14 @@ public class GameManager : MonoSingleton<GameManager>
                         
                         // Animation CB : LoadGame
                         ChangeState(GameState.LoadGame);
+                    }
+                    break;
+                }
+            case GameState.WaitForConnect:
+                {
+                    if (m_isEntering)
+                    {
+
                     }
                     break;
                 }
