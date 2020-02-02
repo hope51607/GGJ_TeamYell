@@ -30,13 +30,6 @@ public class ObjectMotions : MonoBehaviour
         {
             if (data["motion_data"]["x"].ToString() != "")
             {
-                /*float xRotate = (float)data["motion_data"]["gamma"];
-                float yRotate = -(float)data["motion_data"]["alpha"];
-                float zRotate = -(float)data["motion_data"]["beta"];
-                xRotate = Mathf.Clamp(xRotate, xyzMinRotateRange.x, xyzMaxRotateRange.x); // -45~45
-                //yRotate = Mathf.Clamp(yRotate, xyzMinRange.y, xyzMaxRange.y);
-                zRotate = Mathf.Clamp(zRotate, xyzMinRotateRange.z, xyzMaxRotateRange.z); // -30~30
-                Vector3 abgAngles = new Vector3(xRotate, 0, zRotate);*/
                 Vector3 abgAngles = new Vector3(-(float)data["motion_data"]["beta"],
                 -(float)data["motion_data"]["alpha"], -(float)data["motion_data"]["gamma"]);
                 movableObject[playerNumber].transform.eulerAngles = abgAngles;

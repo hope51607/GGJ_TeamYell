@@ -42,6 +42,8 @@ public class CheckConection : MonoBehaviour
 
     public void LoadGame()
     {
+        AirConsole.instance.Broadcast(JToken.Parse("{\"adjustment\":\"1\"}"));
+
         GameManager.Instance.ChangeState(GameState.LoadGame);
     }
 }
