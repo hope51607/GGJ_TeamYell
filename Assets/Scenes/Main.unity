@@ -568,6 +568,9 @@ MonoBehaviour:
   m_current: 1
   micThresholds: []
   points: 0000000001000000
+  PlayerNames:
+  - ovvo
+  - ovvo2
 --- !u!4 &525651146
 Transform:
   m_ObjectHideFlags: 0
@@ -967,6 +970,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3464686088842543637, guid: ea320b10b73b41e47bb295b1f7c43dec,
+        type: 3}
+      propertyPath: Loop
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3464686089097159940, guid: ea320b10b73b41e47bb295b1f7c43dec,
+        type: 3}
+      propertyPath: Loop
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3464686089288393667, guid: ea320b10b73b41e47bb295b1f7c43dec,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1026,6 +1039,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: AudioManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 3464686089581269695, guid: ea320b10b73b41e47bb295b1f7c43dec,
+        type: 3}
+      propertyPath: Loop
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ea320b10b73b41e47bb295b1f7c43dec, type: 3}

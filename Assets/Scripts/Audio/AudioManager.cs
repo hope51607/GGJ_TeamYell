@@ -190,9 +190,7 @@ public class AudioManager : MonoBehaviour
     public void PlaySE(string name)
     {
         SE se = Array.Find(SoundEffectPool, sound => sound.name == name);
-        SEAudio.clip = se.clip;
-        SEAudio.volume = se.volume;
-        SEAudio.Play();
+        SEAudio.PlayOneShot(se.clip, se.volume);
     }
 
     /* Test
