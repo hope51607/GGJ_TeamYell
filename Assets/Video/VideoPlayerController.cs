@@ -37,9 +37,8 @@ public class VideoPlayerController : MonoBehaviour
     void OnMessage(int from, JToken data)
     {
         int playerNumber = AirConsole.instance.ConvertDeviceIdToPlayerNumber(from);
-        if (playerNumber >= 2) {
+        if (playerNumber < 0)
             return;
-        }
         if (data["blow"] != null) {
             Skip();
         }

@@ -19,9 +19,8 @@ public class AirConsoleController : MonoBehaviour
     void OnMessage(int from, JToken data) {
         //Debug.Log("message from device " + from + ", data: " + data);
         int playerNumber = AirConsole.instance.ConvertDeviceIdToPlayerNumber(from);
-        if (playerNumber >= 2) {
+        if (playerNumber < 0)
             return;
-        }
 
         if (data["motion"] != null) {
             objectMotions.OnMessage(playerNumber, data);
