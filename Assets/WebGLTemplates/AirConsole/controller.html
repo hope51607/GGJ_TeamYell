@@ -95,8 +95,8 @@
           shake_detector.onDeviceMotion(motion_event);
           console.log("onDeviceMotion");
 
-          me.rateLimiter.message(AirConsole.SCREEN, { "action": "motion", "motion_data": motion_event });
-          //me.airconsole.message(AirConsole.SCREEN, { "action": "motion", "motion_data": motion_event });
+          me.rateLimiter.message(AirConsole.SCREEN, { "motion": "1", "motion_data": motion_event });
+          //me.airconsole.message(AirConsole.SCREEN, { "motion": "1", "motion_data": motion_event });
       };
 
       //麥克風用
@@ -116,7 +116,8 @@
                   sum += Math.abs(input[i]);
               }
               var mean = sum / input.length;
-              me.airconsole.message(AirConsole.SCREEN, { "action": "government", "value": mean });
+              me.rateLimiter.message(AirConsole.SCREEN, { "government": "1", "government_value": mean });
+              //me.airconsole.message(AirConsole.SCREEN, { "government": "1", "government_value": mean });
           };
       };
   
@@ -155,7 +156,7 @@
 
     App.prototype.blowButton = function(msg) {
         var me = this;
-        me.airconsole.message(AirConsole.SCREEN, { "action": "blow" });
+        me.airconsole.message(AirConsole.SCREEN, { "blow": "1" });
     };
 
   </script>

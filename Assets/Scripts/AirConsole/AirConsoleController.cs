@@ -23,22 +23,35 @@ public class AirConsoleController : MonoBehaviour
     {
         //Debug.Log("message from device " + from + ", data: " + data);
         int playerNumber = AirConsole.instance.ConvertDeviceIdToPlayerNumber(from);
-        switch (data["action"].ToString())
-        {
-            case "motion":
-                objectMotions.OnMessage(playerNumber, data);
-                break;
-            case "government":
-                microphoneHandler.OnMessage(playerNumber, data);
-                break;
-            case "blow":
-                //吹氣
-                GameplayController.Instance.BlowManagers[playerNumber].SetBlowForce();
-                break;
-            default:
-                Debug.Log(data);
-                break;
+        if (data["motion"] != null) {
+            objectMotions.OnMessage(playerNumber, data);
         }
+
+        if (data["government"] != null) {
+            microphoneHandler.OnMessage(playerNumber, data);
+        }
+
+        if (data["blow"] != null) {
+            Debug.Log("吹");
+        }
+
+
+        //switch (data["action"].ToString())
+        //{
+        //    case "motion":
+        //        objectMotions.OnMessage(playerNumber, data);
+        //        break;
+        //    case "government":
+        //        microphoneHandler.OnMessage(playerNumber, data);
+        //        break;
+        //    case "blow":
+        //        //吹氣
+        //        Debug.Log("吹");
+        //        break;
+        //    default:
+        //        Debug.Log(data);
+        //        break;
+        //}
     }
 
     void OnDestroy()
