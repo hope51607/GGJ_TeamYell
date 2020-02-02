@@ -2564,7 +2564,7 @@ PrefabInstance:
     - target: {fileID: 2704832346712913225, guid: 8a3f02253c43b2c4dbfe3fc5e3d23de2,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2704832346712913226, guid: 8a3f02253c43b2c4dbfe3fc5e3d23de2,
         type: 3}
@@ -3111,7 +3111,7 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1588732998}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &2029769559
+--- !u!114 &2029769560
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
