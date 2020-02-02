@@ -20,8 +20,6 @@ public class AirConsoleController : MonoBehaviour
     {
         //Debug.Log("message from device " + from + ", data: " + data);
         int playerNumber = AirConsole.instance.ConvertDeviceIdToPlayerNumber(from);
-
-
         if (data["motion"] != null) {
             objectMotions.OnMessage(playerNumber, data);
         }
@@ -31,7 +29,7 @@ public class AirConsoleController : MonoBehaviour
         }
 
         if (data["blow"] != null) {
-            Debug.Log("吹");
+            GameplayController.Instance.BlowManagers[playerNumber].SetBlowForce();
         }
 
 
