@@ -32,7 +32,7 @@ public class AirConsoleController : MonoBehaviour
         }
 
         if (data["blow"] != null) {
-            Debug.Log("吹");
+            GameplayController.Instance.BlowManagers[playerNumber].SetBlowForce();
         }
 
 
