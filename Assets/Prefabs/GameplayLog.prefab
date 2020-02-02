@@ -326,7 +326,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_text: {fileID: 0}
-  m_playerIndex: 0
+  m_playerIndex: 1
 --- !u!1 &638887903819212446
 GameObject:
   m_ObjectHideFlags: 0
@@ -838,7 +838,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_text: {fileID: 0}
-  m_playerIndex: 0
+  m_playerIndex: 1
 --- !u!1 &5799871091717365298
 GameObject:
   m_ObjectHideFlags: 0
