@@ -20,6 +20,8 @@ public class GameManager : MonoSingleton<GameManager>
 
     private bool m_isEntering;
 
+    public int[] points={0,1};
+
     private void Awake()
     {
         DontDestroyOnLoad(gameObject);
