@@ -23,8 +23,8 @@ public class ObjectMotions : MonoBehaviour
         }
     }
 
-    public void OnMessage(int playerNumber, JToken data)
-    {
+
+    public void OnMessage(int playerNumber, JToken data) {
         //Debug.Log(playerNumber);
         if (data["motion_data"] != null)
         {

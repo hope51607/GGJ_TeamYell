@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using UnityEngine.UI;
+using NDream.AirConsole;
+using Newtonsoft.Json.Linq;
 
 public class ResultAnimation : MonoBehaviour
 {
@@ -154,8 +156,25 @@ public class ResultAnimation : MonoBehaviour
                 anim.Play("PlayerWin");
             }
             calculationDone = true;
+            AirConsole.instance.onMessage += OnMessage;
             replayButton.onClick.AddListener(delegate () { rs.Replay(); });
         }
+    }
+
+    void OnMessage(int from, JToken data)
+    {
+        int playerNumber = AirConsole.instance.ConvertDeviceIdToPlayerNumber(from);
+        if (playerNumber < 0)
+            return;
+
+        if (data["blow"] != null) {
+            rs.Replay();
+        }
+    }
+
+    private void OnDestroy()
+    {
+        AirConsole.instance.onMessage -= OnMessage;
     }
 
 }
