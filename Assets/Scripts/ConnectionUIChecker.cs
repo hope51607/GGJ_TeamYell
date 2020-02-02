@@ -25,7 +25,6 @@ public class ConnectionUIChecker : MonoBehaviour
         CheckConection.Instance.OnGetMicInput += OnGetMicInput;
         CheckConection.Instance.OnConnectCountChange += OnConnectCountChange;
         CheckConection.Instance.OnClickLoadGame += LoadGame;
-        _p2FieldPlaceholder.text = _p2FieldPlaceholder.text.Replace(" Not", "");
     }
 
     private void OnDestroy()
