@@ -4,11 +4,8 @@ using UnityEngine;
 
 public class ResultScene : MonoBehaviour
 {
-    void Update()
+    public void Replay()
     {
-        /*if (Input.anyKey)
-        {
-            GameManager.Instance.ChangeState(GameState.Replay);
-        }*/
+         GameManager.Instance.ChangeState(GameState.Replay);
     }
 }
