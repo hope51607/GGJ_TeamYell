@@ -5,13 +5,14 @@ using UnityEngine.Video;
 public class VideoPlayerController : MonoBehaviour
 {
    public VideoPlayer videoPlayer;
-   
+   void Awake()
+   {
+        videoPlayer.url = Application.streamingAssetsPath + "/" + "opening.mp4";
+   }
    void Start()
    {
-       videoPlayer.url = "https://docs.google.com/uc?export=download&id=1iyP5JYftGTQJP0ss6xXyhvE2QNhN2Slr";
-       videoPlayer.Play();
-       videoPlayer.loopPointReached += EndReached;
-       AudioManager.Instance.SwitchMusic("Plot");
+       videoPlayer.Prepare();
+       videoPlayer.prepareCompleted += PlayVideo;
    }
    
    void EndReached(UnityEngine.Video.VideoPlayer vp) 
@@ -22,6 +23,12 @@ public class VideoPlayerController : MonoBehaviour
     {
         videoPlayer.loopPointReached -= EndReached;
         GameManager.Instance.ChangeState(GameState.LoadGame);
+    }
+    public void PlayVideo(UnityEngine.Video.VideoPlayer vp)
+    {
+        videoPlayer.Play();
+        videoPlayer.loopPointReached += EndReached;
+         AudioManager.Instance.SwitchMusic("Plot");
     }
 }
  
