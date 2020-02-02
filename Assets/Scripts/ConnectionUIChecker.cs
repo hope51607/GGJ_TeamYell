@@ -14,6 +14,8 @@ public class ConnectionUIChecker : MonoBehaviour
     Text _p1FieldText, _p2FieldText;
 
     [SerializeField]
+    Text _p1FieldPlaceholder, _p2FieldPlaceholder;
+    [SerializeField]
     Button _startButton;
 
     private void Awake()
@@ -23,6 +25,7 @@ public class ConnectionUIChecker : MonoBehaviour
         CheckConection.Instance.OnGetMicInput += OnGetMicInput;
         CheckConection.Instance.OnConnectCountChange += OnConnectCountChange;
         CheckConection.Instance.OnClickLoadGame += LoadGame;
+        _p2FieldPlaceholder.text = _p2FieldPlaceholder.text.Replace(" Not", "");
     }
 
     private void OnDestroy()
@@ -48,13 +51,13 @@ public class ConnectionUIChecker : MonoBehaviour
         if (count >= 0)
         {
             _p1NameField.interactable = true;
-            _p1FieldText.text = _p1FieldText.text.Replace(" Not", "");
+            _p1FieldPlaceholder.text = _p1FieldPlaceholder.text.Replace(" Not", "");
         }
 
         if (count >= 1)
         {
             _p2NameField.interactable = true;
-            _p2FieldText.text = _p2FieldText.text.Replace(" Not", "");
+            _p2FieldPlaceholder.text = _p2FieldPlaceholder.text.Replace(" Not", "");
         }
     }
 

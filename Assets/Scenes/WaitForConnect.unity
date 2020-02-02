@@ -673,7 +673,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Player1 Not Ready
+  m_Text: Player 1 Not Ready
 --- !u!222 &499342861
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -992,7 +992,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Player2 Not Ready
+  m_Text: Player 2 Not Ready
 --- !u!222 &1377790959
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1180,6 +1180,8 @@ MonoBehaviour:
   _p2NameField: {fileID: 106107536}
   _p1FieldText: {fileID: 1240183874}
   _p2FieldText: {fileID: 359202648}
+  _p1FieldPlaceholder: {fileID: 499342860}
+  _p2FieldPlaceholder: {fileID: 1377790958}
   _startButton: {fileID: 1175656008}
 --- !u!4 &1618472013
 Transform:
