@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+[SerializeField]
 public enum GameState
 {
     None = 0,
@@ -24,6 +25,8 @@ public class GameManager : MonoSingleton<GameManager>
     public float[] micThresholds;
 
     public int[] points;
+
+    public string[] PlayerNames = new string[2];
 
     private void Awake()
     {
