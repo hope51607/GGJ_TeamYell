@@ -134,7 +134,7 @@
                     setInterval(function() {
                         me.blow_threshold /= me.blow_threshold_conter;
                         me.blow_threshold_flag = false;
-                        me.rateLimiter.message(AirConsole.SCREEN, { "government_threshold": me.blow_threshold });
+                        me.rateLimiter.message(AirConsole.SCREEN, { "government_threshold": me.blow_threshold * 2 });
                     }, 10000);
 
                 };
