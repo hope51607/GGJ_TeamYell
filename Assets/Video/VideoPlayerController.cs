@@ -10,7 +10,7 @@ public class VideoPlayerController : MonoBehaviour
    void Awake()
    {
        AirConsole.instance.onMessage += OnMessage;
-        videoPlayer.url = Application.streamingAssetsPath + "/" + "opening.mp4";
+        videoPlayer.url = Application.streamingAssetsPath + "/" + "opening.webm";
    }
    void Start()
    {
