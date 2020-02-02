@@ -11,6 +11,9 @@ public class ConnectionUIChecker : MonoBehaviour
     InputField _p1NameField, _p2NameField;
 
     [SerializeField]
+    Text _p1FieldText, _p2FieldText;
+
+    [SerializeField]
     Button _startButton;
 
     private void Awake()
@@ -31,6 +34,9 @@ public class ConnectionUIChecker : MonoBehaviour
     {
         AirConsole.instance.Broadcast(JToken.Parse("{\"adjustment\":\"1\"}"));
         GameManager.Instance.ChangeState(GameState.LoadGame);
+
+        GameManager.Instance.PlayerNames[0] = _p1FieldText.text;
+        GameManager.Instance.PlayerNames[1] = _p2FieldText.text;
     }
 
     void OnConnectCountChange (int count)
