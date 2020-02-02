@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using Newtonsoft.Json.Linq;
 using UnityEngine;
 using UnityEngine.UI;
@@ -31,6 +32,8 @@ public class BlowManager : MonoBehaviour
     const float ConstBlowForce = 0.3f;
     const int AmountOfDust = 10;
 
+    Vector3 _oriCassettePos;
+
     [SerializeField]
     int _remainingDustAmount;
 
@@ -38,6 +41,7 @@ public class BlowManager : MonoBehaviour
 
     private void Start()
     {
+        _oriCassettePos = CassetteTransform.position;
         StartCoroutine(FillDust());
     }
 
@@ -80,6 +84,7 @@ public class BlowManager : MonoBehaviour
             StartCoroutine(FillDust());
             ClearCount++;
             _clearCountText.text = ClearCount.ToString();
+
         }
 
         _progressBarImage.fillAmount = GetRemainingDustRatio();
@@ -107,9 +112,16 @@ public class BlowManager : MonoBehaviour
 
     IEnumerator FillDust()
     {
-        yield return null;
+        CassetteTransform.DOMoveY(-4, 0.75f);
+        yield return new WaitForSeconds(0.75f);
+        Vector3 _pos = CassetteTransform.position;
+        _pos.y = 12;
+        CassetteTransform.position = _pos;
+
+        CassetteTransform.DOMove(_oriCassettePos, 0.75f);
+        yield return new WaitForSeconds(0.75f);
         
-        Vector3 _pos = Vector3.zero;
+        _pos = Vector3.zero;
         float _scale;
         for (int i = 0; i < AmountOfDust; i++)
         {
