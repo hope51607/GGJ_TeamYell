@@ -10,7 +10,7 @@ public class GameplayController : MonoSingleton<GameplayController>
 
     public BlowManager[] BlowManagers;
 
-    const int MaxTime = 60;
+    const int MaxTime = 64;     // 開場動畫4秒
 
     [SerializeField]
     float _timeCounter;

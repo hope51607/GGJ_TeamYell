@@ -33,7 +33,7 @@ public class AirConsoleController : MonoBehaviour
                 break;
             case "blow":
                 //吹氣
-                Debug.Log("吹");
+                GameplayController.Instance.BlowManagers[playerNumber].SetBlowForce();
                 break;
             default:
                 Debug.Log(data);

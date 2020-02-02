@@ -10,9 +10,6 @@ public class BlowManager : MonoBehaviour
     MMSimpleObjectPooler _dustPool;
 
     [SerializeField]
-    BoxCollider _cassetteTopCollider;
-
-    [SerializeField]
     Image _progressBarImage;
 
     [SerializeField]
@@ -36,6 +33,7 @@ public class BlowManager : MonoBehaviour
     const float UpForceMultiplier = 2.5f;
     const float MinDustScale = 0.02f, MaxDustScale = 0.2f;
     const float MinDustSpawnPosition = -1.5f, MaxDustSpawnPosition = 1.5f;
+    const float ConstBlowForce = 0.3f;
     const int AmountOfDust = 10;
 
     [SerializeField]
@@ -54,14 +52,15 @@ public class BlowManager : MonoBehaviour
         //Debug.Log(micInput);
         if (micInput > MicInputThreshold)
         {
-            _cassetteTopCollider.enabled = false;
             BlowForce = micInput * _micInputMultiplier;
             Blow();
         }
-        else
-        {
-            _cassetteTopCollider.enabled = true;
-        }
+    }
+
+    public void SetBlowForce()
+    {
+        BlowForce = ConstBlowForce;
+        Blow();
     }
 
     public void InactiveDust()
