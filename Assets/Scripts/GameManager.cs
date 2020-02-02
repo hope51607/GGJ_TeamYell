@@ -7,6 +7,7 @@ public enum GameState
 {
     None = 0,
     StartAnim,
+    WaitForConnect,
     LoadGame,
     Game,
     Result,
@@ -20,11 +21,13 @@ public class GameManager : MonoSingleton<GameManager>
 
     private bool m_isEntering;
 
-    public int[] points={0,1};
+    public int[] points;
 
     private void Awake()
     {
         DontDestroyOnLoad(gameObject);
+
+        points = new int[2];
     }
 
     private void Start()
@@ -39,22 +42,34 @@ public class GameManager : MonoSingleton<GameManager>
 
     private void Tick()
     {
+        var entering = m_isEntering;
+        if (m_isEntering)
+            m_isEntering = false;
+
         switch (m_current)
         {
             case GameState.StartAnim:
                 {
-                    if (m_isEntering)
+                    if (entering)
                     {
                         // Play Animation
-                        
+
                         // Animation CB : LoadGame
-                        ChangeState(GameState.LoadGame);
+                        //ChangeState(GameState.WaitForConnect);
+                    }
+                    break;
+                }
+            case GameState.WaitForConnect:
+                {
+                    if (m_isEntering)
+                    {
+                        SceneManager.LoadScene("WaitForConnect");
                     }
                     break;
                 }
             case GameState.LoadGame:
                 {
-                    if (m_isEntering)
+                    if (entering)
                     {
                         SceneManager.LoadScene("Game");
                         ChangeState(GameState.Game);
@@ -63,16 +78,18 @@ public class GameManager : MonoSingleton<GameManager>
                 }
             case GameState.Game:
                 {
-                    if (m_isEntering)
+                    if (entering)
                     {
                         // Play ReadyGo => GameStart
                         // In Game Cycle => Result
+                        Debug.Log("Entering");
+                        AudioManager.Instance.SwitchMusic("GamePlay");
                     }
                     break;
                 }
             case GameState.Result:
                 {
-                    if (m_isEntering)
+                    if (entering)
                     {
                         // Play Result.
                         // In Game Cycle => Wait click Replay
@@ -82,7 +99,7 @@ public class GameManager : MonoSingleton<GameManager>
                 }
             case GameState.Replay:
                 {
-                    if (m_isEntering)
+                    if (entering)
                     {
                         // Go Load game scene.
                         SceneManager.LoadScene("WaitForConnect");
@@ -91,8 +108,7 @@ public class GameManager : MonoSingleton<GameManager>
                 }
         }
 
-        if (m_isEntering)
-            m_isEntering = false;
+        
     }
 
     public void ChangeState(GameState gameState)

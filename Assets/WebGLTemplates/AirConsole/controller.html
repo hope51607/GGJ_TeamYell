@@ -50,7 +50,10 @@
       me.last_motion_event = {alpha:0, beta: 0, gamma: 0};
 
       me.airconsole.onMessage = function(from, data) {
-        console.log("onMessage", from, data);
+          console.log("onMessage", from, data);
+          if (data["adjustment"] != null) {
+              this.calibrateButton();
+          }
       };
       
       me.airconsole.onReady = function(code) {
@@ -151,7 +154,8 @@
 
     App.prototype.calibrateButton = function(msg) {
       var me = this;
-      me.alpha_calibration = me.last_motion_event["alpha"];
+        me.alpha_calibration = me.last_motion_event["alpha"];
+        alert("ya");
     };
 
     App.prototype.blowButton = function(msg) {

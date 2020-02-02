@@ -16,8 +16,7 @@ public class AirConsoleController : MonoBehaviour
         microphoneHandler = GetComponent<MicrophoneHandler>();
     }
 
-    void OnMessage(int from, JToken data)
-    {
+    void OnMessage(int from, JToken data) {
         //Debug.Log("message from device " + from + ", data: " + data);
         int playerNumber = AirConsole.instance.ConvertDeviceIdToPlayerNumber(from);
         if (data["motion"] != null) {
@@ -30,6 +29,10 @@ public class AirConsoleController : MonoBehaviour
 
         if (data["blow"] != null) {
             GameplayController.Instance.BlowManagers[playerNumber].SetBlowForce();
+        }
+
+        if (data["government_threshold"] != null) {
+            print("government_threshold: " + data["government_threshold"]);
         }
 
 

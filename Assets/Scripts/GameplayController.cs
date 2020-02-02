@@ -8,6 +8,9 @@ public class GameplayController : MonoSingleton<GameplayController>
     [SerializeField]
     Image TimeBar;
 
+    [SerializeField]
+    Animator _finishTextAnimator;
+
     public BlowManager[] BlowManagers;
     const int AnimationDelay = 4;                    // 開場動畫4秒
     const int MaxTime = 60;
@@ -38,10 +41,18 @@ public class GameplayController : MonoSingleton<GameplayController>
 
     void TimeOut()
     {
-        GameManager.Instance.ChangeState(GameState.Result);
-        foreach (var manager in BlowManagers)
-        {
-            manager.TimeOut();
+        for (int i = 0; i < BlowManagers.Length; i++) {
+            BlowManagers[i].TimeOut();
+            GameManager.Instance.points[i] = BlowManagers[i].ClearCount;
         }
+        _finishTextAnimator.SetTrigger("Finish");
+
+        StartCoroutine(ToResultScene());
+    }
+
+    IEnumerator ToResultScene()
+    {
+        yield return new WaitForSeconds(3);
+        GameManager.Instance.ChangeState(GameState.Result);
     }
 }
