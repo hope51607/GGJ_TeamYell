@@ -26,7 +26,7 @@ public class GameManager : MonoSingleton<GameManager>
 
     public int[] points;
 
-    public string[] PlayerNames = new string[2];
+    public string[] PlayerNames = { "ovvo", "ovvo2" };
 
     private void Awake()
     {
