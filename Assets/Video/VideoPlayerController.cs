@@ -8,7 +8,7 @@ public class VideoPlayerController : MonoBehaviour
    
    void Start()
    {
-       videoPlayer.url = System.IO.Path.Combine (Application.streamingAssetsPath,"opening.mp4");
+       videoPlayer.url = "https://docs.google.com/uc?export=download&id=1iyP5JYftGTQJP0ss6xXyhvE2QNhN2Slr";
        videoPlayer.Play();
        videoPlayer.loopPointReached += EndReached;
        AudioManager.Instance.SwitchMusic("Plot");

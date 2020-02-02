@@ -52,7 +52,7 @@
       me.airconsole.onMessage = function(from, data) {
           console.log("onMessage", from, data);
           if (data["adjustment"] != null) {
-              this.calibrateButton();
+              window.app.calibrateButton();
           }
       };
       
@@ -154,7 +154,7 @@
 
     App.prototype.calibrateButton = function(msg) {
       var me = this;
-      me.alpha_calibration = me.last_motion_event["alpha"];
+        me.alpha_calibration = me.last_motion_event["alpha"];
     };
 
     App.prototype.blowButton = function(msg) {

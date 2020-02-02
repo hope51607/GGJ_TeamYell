@@ -16,8 +16,7 @@ public class AirConsoleController : MonoBehaviour
         microphoneHandler = GetComponent<MicrophoneHandler>();
     }
 
-    void OnMessage(int from, JToken data)
-    {
+    void OnMessage(int from, JToken data) {
         //Debug.Log("message from device " + from + ", data: " + data);
         int playerNumber = AirConsole.instance.ConvertDeviceIdToPlayerNumber(from);
         if (data["motion"] != null) {

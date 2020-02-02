@@ -22,11 +22,11 @@ public class CheckConection : MonoBehaviour
             if (playerNumber == 0)
             {
                 _p1NameField.interactable = true;
+                _startButton.interactable = true;
             }
             else if (playerNumber == 1)
             {
                 _p2NameField.interactable = true;
-                _startButton.interactable = true;
             }
             else
             {
@@ -42,6 +42,8 @@ public class CheckConection : MonoBehaviour
 
     public void LoadGame()
     {
+        AirConsole.instance.Broadcast(JToken.Parse("{\"adjustment\":\"1\"}"));
+
         GameManager.Instance.ChangeState(GameState.LoadGame);
     }
 }
