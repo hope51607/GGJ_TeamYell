@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class GameplayController : MonoSingleton<GameplayController>
 {
+    public Material[] MaterailSet1, MaterailSet2;
+
     [SerializeField]
     Image TimeBar;
 

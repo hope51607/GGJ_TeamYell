@@ -31,9 +31,6 @@ public class GameManager : MonoSingleton<GameManager>
     private void Awake()
     {
         DontDestroyOnLoad(gameObject);
-
-        micThresholds = new float[2];
-        points = new int[2];
     }
 
     private void Start()
