@@ -26,40 +26,32 @@ public class ObjectMotions : MonoBehaviour
     public void OnMessage(int playerNumber, JToken data)
     {
         //Debug.Log(playerNumber);
-        switch (data["action"].ToString())
+        if (data["motion_data"] != null)
         {
-            case "motion":
-                if (data["motion_data"] != null)
-                {
-                    if (data["motion_data"]["x"].ToString() != "")
-                    {
-                        /*float xRotate = (float)data["motion_data"]["gamma"];
-                        float yRotate = -(float)data["motion_data"]["alpha"];
-                        float zRotate = -(float)data["motion_data"]["beta"];
-                        xRotate = Mathf.Clamp(xRotate, xyzMinRotateRange.x, xyzMaxRotateRange.x); // -45~45
-                        //yRotate = Mathf.Clamp(yRotate, xyzMinRange.y, xyzMaxRange.y);
-                        zRotate = Mathf.Clamp(zRotate, xyzMinRotateRange.z, xyzMaxRotateRange.z); // -30~30
-                        Vector3 abgAngles = new Vector3(xRotate, 0, zRotate);*/
-                        Vector3 abgAngles = new Vector3(-(float)data["motion_data"]["beta"],
-                        -(float)data["motion_data"]["alpha"], -(float)data["motion_data"]["gamma"]);
-                        movableObject[playerNumber].transform.eulerAngles = abgAngles;
+            if (data["motion_data"]["x"].ToString() != "")
+            {
+                /*float xRotate = (float)data["motion_data"]["gamma"];
+                float yRotate = -(float)data["motion_data"]["alpha"];
+                float zRotate = -(float)data["motion_data"]["beta"];
+                xRotate = Mathf.Clamp(xRotate, xyzMinRotateRange.x, xyzMaxRotateRange.x); // -45~45
+                //yRotate = Mathf.Clamp(yRotate, xyzMinRange.y, xyzMaxRange.y);
+                zRotate = Mathf.Clamp(zRotate, xyzMinRotateRange.z, xyzMaxRotateRange.z); // -30~30
+                Vector3 abgAngles = new Vector3(xRotate, 0, zRotate);*/
+                Vector3 abgAngles = new Vector3(-(float)data["motion_data"]["beta"],
+                -(float)data["motion_data"]["alpha"], -(float)data["motion_data"]["gamma"]);
+                movableObject[playerNumber].transform.eulerAngles = abgAngles;
 
-                        Vector3 abgAccelerometer = new Vector3((float)data["motion_data"]["y"] / scaling, 0, 0);
-                        movableObject[playerNumber].transform.position += abgAccelerometer;
-                        if (movableObject[playerNumber].transform.position.x >= initPositions[playerNumber].x + xDisplacementRange)
-                        {
-                            movableObject[playerNumber].transform.position = new Vector3(initPositions[playerNumber].x + xDisplacementRange, movableObject[playerNumber].transform.position.y, movableObject[playerNumber].transform.position.z);
-                        }
-                        else if (movableObject[playerNumber].transform.position.x <= initPositions[playerNumber].x - xDisplacementRange)
-                        {
-                            movableObject[playerNumber].transform.position = new Vector3(initPositions[playerNumber].x - xDisplacementRange, movableObject[playerNumber].transform.position.y, movableObject[playerNumber].transform.position.z);
-                        }
-                    }
+                Vector3 abgAccelerometer = new Vector3((float)data["motion_data"]["y"] / scaling, 0, 0);
+                movableObject[playerNumber].transform.position += abgAccelerometer;
+                if (movableObject[playerNumber].transform.position.x >= initPositions[playerNumber].x + xDisplacementRange)
+                {
+                    movableObject[playerNumber].transform.position = new Vector3(initPositions[playerNumber].x + xDisplacementRange, movableObject[playerNumber].transform.position.y, movableObject[playerNumber].transform.position.z);
                 }
-                break;
-            default:
-                Debug.Log(data);
-                break;
+                else if (movableObject[playerNumber].transform.position.x <= initPositions[playerNumber].x - xDisplacementRange)
+                {
+                    movableObject[playerNumber].transform.position = new Vector3(initPositions[playerNumber].x - xDisplacementRange, movableObject[playerNumber].transform.position.y, movableObject[playerNumber].transform.position.z);
+                }
+            }
         }
     }
 

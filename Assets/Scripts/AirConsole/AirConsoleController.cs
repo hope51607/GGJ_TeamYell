@@ -12,29 +12,43 @@ public class AirConsoleController : MonoBehaviour
     void Awake()
     {
         AirConsole.instance.onMessage += OnMessage;
-        AirConsole.instance.onConnect += (int deviceId) => {
-            AirConsole.instance.SetActivePlayers(4);
-        };
         objectMotions = GetComponent<ObjectMotions>();
         microphoneHandler = GetComponent<MicrophoneHandler>();
     }
 
     void OnMessage(int from, JToken data)
     {
-        Debug.Log("message from device " + from + ", data: " + data);
+        //Debug.Log("message from device " + from + ", data: " + data);
         int playerNumber = AirConsole.instance.ConvertDeviceIdToPlayerNumber(from);
-        switch (data["action"].ToString())
-        {
-            case "motion":
-                objectMotions.OnMessage(playerNumber, data);
-                break;
-            case "government":
-                microphoneHandler.OnMessage(playerNumber, data);
-                break;
-            default:
-                Debug.Log(data);
-                break;
+        if (data["motion"] != null) {
+            objectMotions.OnMessage(playerNumber, data);
         }
+
+        if (data["government"] != null) {
+            microphoneHandler.OnMessage(playerNumber, data);
+        }
+
+        if (data["blow"] != null) {
+            GameplayController.Instance.BlowManagers[playerNumber].SetBlowForce();
+        }
+
+
+        //switch (data["action"].ToString())
+        //{
+        //    case "motion":
+        //        objectMotions.OnMessage(playerNumber, data);
+        //        break;
+        //    case "government":
+        //        microphoneHandler.OnMessage(playerNumber, data);
+        //        break;
+        //    case "blow":
+        //        //吹氣
+        //        Debug.Log("吹");
+        //        break;
+        //    default:
+        //        Debug.Log(data);
+        //        break;
+        //}
     }
 
     void OnDestroy()

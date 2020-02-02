@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 792315432027663916}
+  - component: {fileID: 351232123}
   m_Layer: 0
   m_Name: CassetteObject1
   m_TagString: Untagged
@@ -31,6 +32,19 @@ Transform:
   m_Father: {fileID: 792315433098373751}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &351232123
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 792315432027663917}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c582beba70ac243489972f37e48bdaac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _topCollider: {fileID: 6590603407515196914}
 --- !u!1 &792315432428381898
 GameObject:
   m_ObjectHideFlags: 0
@@ -135,7 +149,6 @@ GameObject:
   m_Component:
   - component: {fileID: 792315433050684871}
   - component: {fileID: 792315433050684870}
-  - component: {fileID: 792315433050684869}
   - component: {fileID: 792315433050684868}
   m_Layer: 0
   m_Name: 1
@@ -201,66 +214,6 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!114 &792315433050684869
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 792315433050684888}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 948f4100a11a5c24981795d21301da5c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  volumeTrigger: {fileID: 0}
-  volumeLayer:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  stopNaNPropagation: 1
-  finalBlitToCameraTarget: 0
-  antialiasingMode: 0
-  temporalAntialiasing:
-    jitterSpread: 0.75
-    sharpness: 0.25
-    stationaryBlending: 0.95
-    motionBlending: 0.85
-  subpixelMorphologicalAntialiasing:
-    quality: 2
-  fastApproximateAntialiasing:
-    fastMode: 0
-    keepAlpha: 0
-  fog:
-    enabled: 1
-    excludeSkybox: 1
-  debugLayer:
-    lightMeter:
-      width: 512
-      height: 256
-      showCurves: 1
-    histogram:
-      width: 512
-      height: 256
-      channel: 3
-    waveform:
-      exposure: 0.12
-      height: 256
-    vectorscope:
-      size: 256
-      exposure: 0.12
-    overlaySettings:
-      linearDepth: 0
-      motionColorIntensity: 4
-      motionGridSize: 64
-      colorBlindnessType: 0
-      colorBlindnessStrength: 1
-  m_Resources: {fileID: 11400000, guid: d82512f9c8e5d4a4d938b575d47f88d4, type: 2}
-  m_ShowToolkit: 1
-  m_ShowCustomSorter: 1
-  breakBeforeColorGrading: 0
-  m_BeforeTransparentBundles: []
-  m_BeforeStackBundles: []
-  m_AfterStackBundles: []
 --- !u!114 &792315433050684868
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -274,10 +227,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _dustPool: {fileID: 0}
-  _cassetteTopCollider: {fileID: 6590603407515196914}
+  _progressBarImage: {fileID: 0}
+  _clearCountText: {fileID: 0}
   _micInputMultiplier: 0.5
   MicInputThreshold: 0.3
-  CassetteTransform: {fileID: 792315432027663916}
+  CassetteTransform: {fileID: 3108774994333370483}
   BlowForce: 0.05
   _remainingDustAmount: 0
 --- !u!1 &792315433098373704
@@ -372,7 +326,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: cf10f84fe1f714b2ca589a07a26c7499, type: 2}
+  - {fileID: 2100000, guid: 2e63ca14fee3960469529b31cac1c60c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -466,7 +420,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 5242bb0cdd57b4dd099677f93959a624, type: 2}
+  - {fileID: 2100000, guid: 2723619e7578d2c4f9d565c4ed47e2cb, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -745,12 +699,12 @@ PrefabInstance:
     - target: {fileID: 2439342217496641975, guid: 565e06dec4b5c4c4da284105be2fe209,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.0466155
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2439342217496641975, guid: 565e06dec4b5c4c4da284105be2fe209,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.6388588
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2439342217496641975, guid: 565e06dec4b5c4c4da284105be2fe209,
         type: 3}
