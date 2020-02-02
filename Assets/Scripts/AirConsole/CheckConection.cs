@@ -13,6 +13,9 @@ public class CheckConection : MonoSingleton<CheckConection> {
     public delegate void OnConnectCountChangeDelegate(int count);
     public OnConnectCountChangeDelegate OnConnectCountChange;
 
+    public delegate void OnClickLoadGameDelegate();
+    public OnClickLoadGameDelegate OnClickLoadGame;
+
     void Awake() {
         AirConsole.instance.onMessage += OnMessage;
         AirConsole.instance.onConnect += OnConnect;
@@ -49,6 +52,10 @@ public class CheckConection : MonoSingleton<CheckConection> {
 
             GameManager.Instance.micThresholds[playerNumber] = (float)data["government_threshold"];
             OnGetMicInput?.Invoke(playerNumber);
+        }
+
+        if (data["blow"] != null) {
+            OnClickLoadGame?.Invoke();
         }
     }
 }

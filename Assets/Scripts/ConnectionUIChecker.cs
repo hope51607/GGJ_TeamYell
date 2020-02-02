@@ -19,12 +19,14 @@ public class ConnectionUIChecker : MonoBehaviour
 
         CheckConection.Instance.OnGetMicInput += OnGetMicInput;
         CheckConection.Instance.OnConnectCountChange += OnConnectCountChange;
+        CheckConection.Instance.OnClickLoadGame += LoadGame;
     }
 
     private void OnDestroy()
     {
         CheckConection.Instance.OnGetMicInput -= OnGetMicInput;
         CheckConection.Instance.OnConnectCountChange -= OnConnectCountChange;
+        CheckConection.Instance.OnClickLoadGame -= LoadGame;
     }
 
     public void LoadGame()
