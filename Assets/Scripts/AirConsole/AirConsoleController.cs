@@ -12,9 +12,6 @@ public class AirConsoleController : MonoBehaviour
     void Awake()
     {
         AirConsole.instance.onMessage += OnMessage;
-        AirConsole.instance.onConnect += (int deviceId) => {
-            AirConsole.instance.SetActivePlayers(4);
-        };
         objectMotions = GetComponent<ObjectMotions>();
         microphoneHandler = GetComponent<MicrophoneHandler>();
     }

@@ -11,7 +11,7 @@ public class MicrophoneHandler : MonoBehaviour
     public void OnMessage(int from, JToken data)
     {
         if (data["government_value"] != null) {
-            print(data["government_value"]);
+            //print(data["government_value"]);
             GameplayController.Instance.BlowManagers[from].SetBlowForce((float)data["government_value"]);
         }
     }
