@@ -1,5 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using NDream.AirConsole;
+using Newtonsoft.Json.Linq;
 using UnityEngine;
 using UnityEngine.Video;
 public class VideoPlayerController : MonoBehaviour
@@ -7,6 +9,7 @@ public class VideoPlayerController : MonoBehaviour
    public VideoPlayer videoPlayer;
    void Awake()
    {
+       AirConsole.instance.onMessage += OnMessage;
         videoPlayer.url = Application.streamingAssetsPath + "/" + "opening.mp4";
    }
    void Start()
@@ -29,6 +32,22 @@ public class VideoPlayerController : MonoBehaviour
         videoPlayer.Play();
         videoPlayer.loopPointReached += EndReached;
          AudioManager.Instance.SwitchMusic("Plot");
+    }
+
+    void OnMessage(int from, JToken data)
+    {
+        int playerNumber = AirConsole.instance.ConvertDeviceIdToPlayerNumber(from);
+        if (playerNumber >= 2) {
+            return;
+        }
+        if (data["blow"] != null) {
+            Skip();
+        }
+    }
+
+    private void OnDestroy()
+    {
+        AirConsole.instance.onMessage -= OnMessage;
     }
 }
  

@@ -46,6 +46,9 @@ public class CheckConection : MonoSingleton<CheckConection> {
 
     void OnMessage(int from, JToken data) {
         int playerNumber = AirConsole.instance.ConvertDeviceIdToPlayerNumber(from);
+        if (playerNumber >= 2) {
+            return;
+        }
 
         if (data["government_threshold"] != null) {
             print("government_threshold: " + data["government_threshold"]);
