@@ -23,6 +23,7 @@ public class BlowManager : MonoBehaviour
     float MicInputThreshold = 0.3f;
 
     public Vector3 BlowDirection { get; private set; }
+    public int ClearCount { get; private set; }
 
     public delegate void ApplyBlowForceDelegate();
     public ApplyBlowForceDelegate ApplyBlowForce;
@@ -39,7 +40,6 @@ public class BlowManager : MonoBehaviour
     [SerializeField]
     int _remainingDustAmount;
 
-    int _clearCount;
     bool _timeOut;
 
     private void Start()
@@ -73,8 +73,8 @@ public class BlowManager : MonoBehaviour
         if (_remainingDustAmount == 0)
         {
             StartCoroutine(FillDust());
-            _clearCount++;
-            _clearCountText.text = _clearCount.ToString();
+            ClearCount++;
+            _clearCountText.text = ClearCount.ToString();
         }
 
         _progressBarImage.fillAmount = GetRemainingDustRatio();

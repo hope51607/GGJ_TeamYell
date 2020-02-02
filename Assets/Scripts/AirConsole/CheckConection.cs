@@ -27,7 +27,6 @@ public class CheckConection : MonoBehaviour
             else if (playerNumber == 1)
             {
                 _p2NameField.interactable = true;
-                _startButton.interactable = true;
             }
             else
             {
