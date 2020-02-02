@@ -48,11 +48,13 @@ public class ConnectionUIChecker : MonoBehaviour
         if (count >= 0)
         {
             _p1NameField.interactable = true;
+            _p1FieldText.text = _p1FieldText.text.Replace(" Not", "");
         }
 
         if (count >= 1)
         {
             _p2NameField.interactable = true;
+            _p2FieldText.text = _p2FieldText.text.Replace(" Not", "");
         }
     }
 
