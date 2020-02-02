@@ -49,9 +49,9 @@ public class GameManager : MonoSingleton<GameManager>
                     if (m_isEntering)
                     {
                         // Play Animation
-                        
+
                         // Animation CB : LoadGame
-                        ChangeState(GameState.LoadGame);
+                        //ChangeState(GameState.WaitForConnect);
                     }
                     break;
                 }
@@ -59,7 +59,7 @@ public class GameManager : MonoSingleton<GameManager>
                 {
                     if (m_isEntering)
                     {
-
+                        SceneManager.LoadScene("WaitForConnect");
                     }
                     break;
                 }

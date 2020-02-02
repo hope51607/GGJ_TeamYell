@@ -15,12 +15,9 @@ public class BlowManager : MonoBehaviour
     [SerializeField]
     Text _clearCountText;
 
-    [SerializeField]
-    float _micInputMultiplier = 5f;
-
     // 對硬體適應 要拿出來UI改
     [SerializeField]
-    float MicInputThreshold = 0.3f;
+    float MicInputThreshold = 0.1f;
 
     public Vector3 BlowDirection { get; private set; }
     public int ClearCount { get; private set; }
@@ -49,11 +46,20 @@ public class BlowManager : MonoBehaviour
 
     public void SetBlowForce(float micInput)
     {
-        //Debug.Log(micInput);
-        if (micInput > MicInputThreshold)
+        float _inputThresholdRatio = (micInput / MicInputThreshold);
+        if (_inputThresholdRatio >= 1)
         {
-            BlowForce = micInput * _micInputMultiplier;
+            BlowForce = _inputThresholdRatio * ConstBlowForce;
             Blow();
+
+            if (_inputThresholdRatio < 1.2f)
+            {
+                AudioManager.Instance.PlaySE("BlowLow");
+            }
+            else
+            {
+                AudioManager.Instance.PlaySE("BlowHigh");
+            }
         }
     }
 
@@ -61,6 +67,8 @@ public class BlowManager : MonoBehaviour
     {
         BlowForce = ConstBlowForce;
         Blow();
+
+        AudioManager.Instance.PlaySE("BlowLow");
     }
 
     public void InactiveDust()
