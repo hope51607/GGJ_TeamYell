@@ -6,29 +6,34 @@ using UnityEngine.UI;
 public class GameplayController : MonoSingleton<GameplayController>
 {
     [SerializeField]
-    Text TimeText;
+    Image TimeBar;
 
     public BlowManager[] BlowManagers;
-
-    const int MaxTime = 64;     // 開場動畫4秒
+    const int AnimationDelay = 4;                    // 開場動畫4秒
+    const int MaxTime = 60;
 
     [SerializeField]
     float _timeCounter;
 
     private void Awake()
     {
-        _timeCounter = MaxTime;
+        StartCoroutine(TimeCounter()); 
     }
 
-    private void Update()
+    IEnumerator TimeCounter()
     {
-        TimeText.text = ((int)_timeCounter).ToString();
-        _timeCounter -= Time.deltaTime;
+        _timeCounter = MaxTime;
+        yield return new WaitForSeconds(AnimationDelay);
 
-        if (_timeCounter <= 0)
+        while (_timeCounter > 0)
         {
-            TimeOut();
+            TimeBar.fillAmount = _timeCounter / MaxTime;
+            _timeCounter -= Time.deltaTime;
+
+            yield return null;
         }
+
+        TimeOut();
     }
 
     void TimeOut()
