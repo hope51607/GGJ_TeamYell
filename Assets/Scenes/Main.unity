@@ -566,8 +566,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_current: 1
-  micThresholds: []
-  points: 0000000001000000
+  micThresholds:
+  - 0.1
+  - 0.1
+  points: 0000000000000000
   PlayerNames:
   - 
   - 
