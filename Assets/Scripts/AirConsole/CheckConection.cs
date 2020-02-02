@@ -50,7 +50,9 @@ public class CheckConection : MonoSingleton<CheckConection> {
         if (data["government_threshold"] != null) {
             print("government_threshold: " + data["government_threshold"]);
 
-            GameManager.Instance.micThresholds[playerNumber] = (float)data["government_threshold"];
+            float _inputThreshold = (float)data["government_threshold"];
+            if (_inputThreshold > 0.01f)
+                GameManager.Instance.micThresholds[playerNumber] = (float)data["government_threshold"];
             OnGetMicInput?.Invoke(playerNumber);
         }
 
