@@ -35,7 +35,7 @@ public class GameManager : MonoSingleton<GameManager>
 
     private void Start()
     {
-        ChangeState(GameState.WaitForConnect);
+     //   ChangeState(GameState.WaitForConnect);
     }
 
     private void Update()
@@ -58,7 +58,7 @@ public class GameManager : MonoSingleton<GameManager>
                         // Play Animation
 
                         // Animation CB : LoadGame
-                        //ChangeState(GameState.WaitForConnect);
+                        ChangeState(GameState.WaitForConnect);
                     }
                     break;
                 }

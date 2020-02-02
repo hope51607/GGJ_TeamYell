@@ -17,12 +17,12 @@ public class VideoPlayerController : MonoBehaviour
    
    void EndReached(UnityEngine.Video.VideoPlayer vp) 
     {
-        GameManager.Instance.ChangeState(GameState.LoadGame);
+        GameManager.Instance.ChangeState(GameState.WaitForConnect);
     }
     public void Skip()
     {
         videoPlayer.loopPointReached -= EndReached;
-        GameManager.Instance.ChangeState(GameState.LoadGame);
+        GameManager.Instance.ChangeState(GameState.WaitForConnect);
     }
     public void PlayVideo(UnityEngine.Video.VideoPlayer vp)
     {
