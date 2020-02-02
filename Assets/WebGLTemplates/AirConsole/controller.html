@@ -116,7 +116,7 @@
                   sum += Math.abs(input[i]);
               }
               var mean = sum / input.length;
-              me.rateLimiter.message(AirConsole.SCREEN, { "action": "government", "value": mean });
+              me.airconsole.message(AirConsole.SCREEN, { "action": "government", "value": mean });
           };
       };
   
@@ -155,7 +155,7 @@
 
     App.prototype.blowButton = function(msg) {
         var me = this;
-        me.rateLimiter.message(AirConsole.SCREEN, { "action": "blow" });
+        me.airconsole.message(AirConsole.SCREEN, { "action": "blow" });
     };
 
   </script>
