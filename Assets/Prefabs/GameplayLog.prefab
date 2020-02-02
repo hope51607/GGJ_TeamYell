@@ -838,7 +838,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_text: {fileID: 0}
-  m_playerIndex: 1
+  m_playerIndex: 0
 --- !u!1 &5799871091717365298
 GameObject:
   m_ObjectHideFlags: 0
