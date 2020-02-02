@@ -44,7 +44,9 @@ public class GameManager : MonoSingleton<GameManager>
                     if (m_isEntering)
                     {
                         // Play Animation
+                        
                         // Animation CB : LoadGame
+                        ChangeState(GameState.LoadGame);
                     }
                     break;
                 }
