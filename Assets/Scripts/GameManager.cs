@@ -21,18 +21,21 @@ public class GameManager : MonoSingleton<GameManager>
 
     private bool m_isEntering;
 
+    public float[] micThresholds;
+
     public int[] points;
 
     private void Awake()
     {
         DontDestroyOnLoad(gameObject);
 
+        micThresholds = new float[2];
         points = new int[2];
     }
 
     private void Start()
     {
-        ChangeState(GameState.StartAnim);
+        ChangeState(GameState.WaitForConnect);
     }
 
     private void Update()
@@ -61,7 +64,7 @@ public class GameManager : MonoSingleton<GameManager>
                 }
             case GameState.WaitForConnect:
                 {
-                    if (m_isEntering)
+                    if (entering)
                     {
                         SceneManager.LoadScene("WaitForConnect");
                     }

@@ -42,6 +42,8 @@ public class CheckConection : MonoBehaviour {
 
         if (data["government_threshold"] != null) {
             print("government_threshold: " + data["government_threshold"]);
+
+            GameManager.Instance.micThresholds[playerNumber] = (float)data["government_threshold"];
         }
     }
 }

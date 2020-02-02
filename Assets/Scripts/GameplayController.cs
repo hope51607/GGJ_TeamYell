@@ -20,6 +20,11 @@ public class GameplayController : MonoSingleton<GameplayController>
 
     private void Awake()
     {
+        for (int i = 0; i < BlowManagers.Length; i++)
+        {
+            BlowManagers[i].MicInputThreshold = GameManager.Instance.micThresholds[i];
+            Debug.Log(i + " " + BlowManagers[i].MicInputThreshold);
+        }
         StartCoroutine(TimeCounter()); 
     }
 
