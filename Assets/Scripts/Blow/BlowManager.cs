@@ -35,6 +35,9 @@ public class BlowManager : MonoBehaviour
     Vector3 _oriCassettePos;
 
     [SerializeField]
+    MeshRenderer _renderer;
+
+    [SerializeField]
     int _remainingDustAmount;
 
     bool _timeOut;
@@ -116,6 +119,18 @@ public class BlowManager : MonoBehaviour
         yield return new WaitForSeconds(0.75f);
         Vector3 _pos = CassetteTransform.position;
         _pos.y = 12;
+
+        int _target = Random.Range(0, 2);
+
+        if (_target == 0)
+        {
+            _renderer.materials = GameplayController.Instance.MaterailSet1;
+        }
+        else
+        {
+            _renderer.materials = GameplayController.Instance.MaterailSet2;
+        }
+
         CassetteTransform.position = _pos;
 
         CassetteTransform.DOMove(_oriCassettePos, 0.75f);
